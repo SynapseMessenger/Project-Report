@@ -22,9 +22,7 @@
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{afterpage}
-
 \usepackage{longtable}
-
 \usepackage[pdfborder={000}]{hyperref} %referencia
 
 % ********************************************************************
@@ -33,23 +31,21 @@
 \newcommand{\myTitle}{Synapse Messenger\xspace}
 \newcommand{\myDegree}{Grado en Ingeniería Informática\xspace}
 \newcommand{\myName}{Marco Manuel Fernández Pranno\xspace}
-\newcommand{\myProf}{Nombre Apllido1 Apellido2 (tutor1)\xspace}
-\newcommand{\myFaculty}{Escuela Técnica Superior de Ingenierías Informática y de
-Telecomunicación\xspace}
-\newcommand{\myFacultyShort}{E.T.S. de Ingenierías Informática y de
-Telecomunicación\xspace}
-\newcommand{\myDepartment}{Departamento de ...\xspace}
+\newcommand{\myProf}{Juan Julián Merelo Guervós\xspace}
+\newcommand{\myFaculty}{Escuela Técnica Superior de Ingenierías Informática y de Telecomunicación\xspace}
+\newcommand{\myFacultyShort}{E.T.S. de Ingenierías Informática y de Telecomunicación\xspace}
+\newcommand{\myDepartment}{Departamento de Arquitectura y Tecnología de Computadores\xspace}
 \newcommand{\myUni}{\protect{Universidad de Granada}\xspace}
 \newcommand{\myLocation}{Granada\xspace}
 \newcommand{\myTime}{\today\xspace}
-\newcommand{\myVersion}{Version 0.1\xspace}
+\newcommand{\myVersion}{Version 1.0\xspace}
 
 
 \hypersetup{
 pdfauthor = {\myName (mfernandezpranno@gmail.com)},
 pdftitle = {\myTitle},
 pdfsubject = {},
-pdfkeywords = {palabra_clave1, palabra_clave2, palabra_clave3, ...},
+pdfkeywords = {Privacidad, anonimato, criptografía,  aplicación web, protocolo Signal, TOR, Node, Websockets},
 pdfcreator = {LaTeX con el paquete ....},
 pdfproducer = {pdflatex}
 }
@@ -171,14 +167,18 @@ pdfproducer = {pdflatex}
 \usepackage{pdfpages}
 \begin{document}
 \input{portada/portada}
+\input{portada/portada_2}
 \input{prefacios/prefacio}
 %\frontmatter
-%\tableofcontents
+\tableofcontents
 %\listoffigures
 %\listoftables
-%
 %\mainmatter
 %\setlength{\parskip}{5pt}
+
+\input{secciones/objectivos}
+\input{secciones/introduccion}
+\input{secciones/estado_del_arte}
 
 %\input{capitulos/01_Introduccion}
 %
