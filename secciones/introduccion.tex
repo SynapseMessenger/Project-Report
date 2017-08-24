@@ -11,6 +11,66 @@ La importancia de éste tipo de tecnologías radica en la protección de un indi
 \section {Tecnologías}
 \subsection {Protocolo Signal}
 \subsection {The Onion Router}
+
+The Onion Router, también conocido por sus siglas como TOR, es un proyecto de software libre que ha permitido la creación de una red superpuesta a Internet, en la que el tráfico de paquetes se realiza de forma que "imposibilita" descubrir la identidad de los pares que participan en la comunicación. \\
+
+Esto se consigue gracias que en cada nodo por el que pasan los paquetes, ésto se cifran sucesivamente, dando lugar a un cifrado por capas donde la información previa es inaccesible para un nodo intermediario o para alguna entidad maliciosa actuando de "man in the middle". \\
+
+Los ámbitos de uso de TOR van desde la actividad cotidiana hasta su aplicación para asegurar comunicaciones en zonas de conflicto bélico. También es conocido por sustentar la denominada "Darknet" ó "Deepweb", cuyo nombre denota las actividades ilícitas que se llevan a cabo bajo el manto de anonimato y privacidad que brinda la tecnología. \\
+
+Poner foto: https://es.wikipedia.org/wiki/Tor_(red_de_anonimato)#/media/File:Funcionamiento_red_tor2.svg
+
+\subsubsection {Hidden Services}
+
+Los "Hidden Services" son, como su nombre indica, servicios alojados en la red TOR que se comunican con sus usuarios de forma exclusiva por esta red. El dominio para acceder a los hidden services se trata de un hash de 16 caracteres derivado de su clave privada y acabado en ".onion". \\
+
+Los usuarios hacen uso de los "rendezvous points" ó puntos de encuentro (OR que actúan como tales), para conectarse con los hidden services. Es en este punto donde se realiza el intercambio de claves entre usuario y servicio, con el punto de encuentro como intermediario y mediador en la comunicación. \\ 
+
+
+\subsubsection {Tipos de Nodos}
+
+\textbf {Onion Router (OR)} \\
+Entidades clave en la arquitectura de la red, una de sus funciones es enrutar el tráfico a través de la red y actuar como servidores de directorios para la comunicación de los usuarios con hidden services. \\ Los servidores de directorios son OR con operadores de confianza, encargados de mantener y difundir la base de datos con la información de otros OR. \\
+
+Cuando un OR se conecta a la red, se define a sí mismo compartiendo y exponiendo su funcionamiento y capacidades (versión, banda ancha, política de enrutamiento, etc) \\
+
+\textbf {Onion Proxy (OP)} \\
+Se trata de la entidad que representa el software ejecutado por el usuario. Obtiene además información acerca del estado de la red y realiza el cálculo del camino aleatorio de la comunicación. De forma que pueda cumplir su función de enrutar el tráfico TCP hacia TOR.
+
+\subsubsection {Funcionamiento}
+
+Las aplicaciones que deseen comunicarse mediante TOR pueden hacerlo siguiendo la interfaz SOCKS, la cual actúa como intermediaria entre la aplicación y la red. \\
+
+Una vez conectado a la red, el usuario solicita a un servicio de directorio información sobre la red (Nodos OR), y decide un camino aleatorio para los paquetes. \\ Este camino consta de un nodo de entrada, un nodo intermedio y un nodo de salida. \\
+
+El camino de la comunicación se genera de forma sucesiva: Primero generando las claves de cifrado, posteriormente realizando un Diffie-Hellman entre los puntos a comunicarse	y por último el envío de las claves y comunicación cifrada mediante RSA (claves pública y privada). \\
+
+Una vez establecidas las claves RSA, se considera un medio seguro para la comunicación, y se procede al envío de los paquetes que irán encapsulados en capas de cifrado que se podrán romper a cada salto hasta llegar al destino. \\ 
+
+Poner foto: https://svn.torproject.org/svn/projects/presentations/security-part2-anon/tor-keys.svg
+
+\subsubsection {Puntos flacos}
+
+Pese a disponer de un extenso equipo de expertos desarrolladores y criptógrafos, TOR está sujeto a una constante caza de vulnerabilidades y búsqueda de métodos para romper la protección que brinda a los usuarios. \\
+Los principales interesados en conseguirlo son entidades gubernamentales y servicios de inteligencia de diversos países, que pese a ésto, son también usuarios de primera mano de TOR y sus servicios. \\ 
+
+Los principales ataques se basan en la correlación de tiempos de envío y tamaños de paquetes en la red, los cuales mediante una análisis sistemático, y controlando un relativamente grande numero de nodos, permitirían destapar la identidad de los usuarios. \\
+
+
+Desde un punto de vista de usuario, la principal desventaja de TOR se haya en que por diseño, su característica es la protección de la identidad de la cual proviene la información, pero no la ofuscación o privacidad de la misma. \\ 
+Es decir, pese a usarse la red TOR para acceder a un servicio, si la comunicación se realiza en texto plano, cualquier tercero escuchando tanto en la entrada o salida de la red podrá interceptar las comunicaciones. \\ 
+
+Los puntos principales que podrían comprometer nuestra identidad durante su uso son los siguientes: \\
+
+\begin{itemize}  
+	\item  Código Javascript malicioso
+	\item  Cookies
+	\item  Cabeceras HTTP
+	\item  Uso de HTTP en lugar de HTTPS
+	\item Peticiones DNS no redireccionadas por TOR
+	\item  Plugins (Java, Flash, etc)
+\end{itemize}
+
 \subsection {Node.js}
 
 Node.js es un interprete de JavaScript desarrollado sobre el motor V8 de Chrome. De forma que extiende el uso del lenguaje también en el lado del servidor. \\
