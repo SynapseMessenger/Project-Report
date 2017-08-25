@@ -18,7 +18,7 @@ Esto se consigue gracias que en cada nodo por el que pasan los paquetes, ésto s
 
 Los ámbitos de uso de TOR van desde la actividad cotidiana hasta su aplicación para asegurar comunicaciones en zonas de conflicto bélico. También es conocido por sustentar la denominada "Darknet" ó "Deepweb", cuyo nombre denota las actividades ilícitas que se llevan a cabo bajo el manto de anonimato y privacidad que brinda la tecnología. \\
 
-Poner foto: https://es.wikipedia.org/wiki/Tor_(red_de_anonimato)#/media/File:Funcionamiento_red_tor2.svg
+Poner foto: \url {https://es.wikipedia.org/wiki/Tor_(red_de_anonimato)#/media/File:Funcionamiento_red_tor2.svg}
 
 \subsubsection {Hidden Services}
 
@@ -90,5 +90,57 @@ El protocolo de websockets consta de soporte en las versiones más modernas de c
 Para solventar este problema, se ha hecho uso de la librería Socket.io de Node.js. \\ 
 Socket.io implementa una interfaz para la comunicación sobre websockets con un mecanismo para pivotar hacia otros modelos de comunicación en caso de que el medio no conste de soporte para éstos. \\
 \subsection {Electron}
+
+Electron es una librería desarrollada por Github que permite crear aplicaciones de escritorio multiplataforma mediante Javascript, CSS y HTML. \\
+Ésto se consigue combinando Node.js y Chromium (navegador de código libre sobre el que está basado Chrome). De esta forma se crea un entorno de ejecución con funcionalidades cliente-servidor. \\
+
+Una de las principales aplicaciones desarrolladas con Electron es Atom, el editor de texto de código libre desarrollado por Github. \\ Sin embargo, hay multitud de aplicaciones utilizadas por millones de usuarios que se apoyan en esta tecnología, entre ellas encontramos Slack, Visual Studio Code, Wordpress.com y Discord, entre otras. \\
+
 \subsection {React}
+
+React es una librería creada por Facebook para la creación de interfaces de usuario basadas en componentes. \\
+Hace uso normalmente de JSX, una sintaxis extendida de Javascript que permite la declaración de etiquetas HTML junto con variables y funciones, además de otras características. \\
+
+Los componentes se suelen organizar de forma jerárquica, donde la información fluye del componente padre a sus hijos, en forma de propiedades (props). \\ Los componentes hijos tienen la capacidad de notificar al padre de una acción de usuario o un cambio de estado mediante llamadas a funciones (recibidas en forma de props).\\
+
+\subsubsection {Componentes, estado, propiedades y renderizado}
+
+Los componentes constan de un estado, propiedades y un ciclo de vida. \\ 
+El estado son las características propias del componente, mientras que las propiedades son aquellos valores recibidos externamente, normalmente por el componente padre. \\
+Al cargarse la vista, éstos se renderizan, y conforme el estado se modifica por acciones del usuario o las propiedades recibidas cambian, éstos avanzan por las distintas etapas del ciclo de vida y vuelven a renderizarse. \\
+
+\subsubsection {DOM Virtual}
+
+React genera un DOM virtual sobre el que se construyen los componentes. Después de una actualización del estado se compara el DOM anterior con el actual, actualizando y modificando de forma eficiente la vista, ya que solo se renderizan de nuevo aquellas partes necesarias.  \\
+
+\subsubsection {Multiplataforma}
+
+Facebook ha desarrollado también una adaptación de React para plataformas móviles, llamada React Native. Ésta funciona con los mismos principios que React y también se desarrolla mediante Javascript, pero utilizando componentes en el renderizado propios de la librería, en lugar de etiquetas HTML, que posteriormente se traducen a componentes nativos. De esta forma es posible creat una aplicación móvil nativa y con todas las propiedades de las mismas. \\
+
+\subsection {React Native} 
+
 \subsection {Redux}
+
+Redux es una librería de Javascript, que aunque agnóstica, ha sido desarrollada con su uso combinado con React en mente. \\ Redux permite mantener un estado central de la aplicación como única fuente de verdad e implementa un flujo de información unidireccional, que resulta muy ventajoso en aplicaciones grandes y/o complejas. \\
+
+El proceso de actualización de estado en Redux es el siguiente: 
+
+\begin{enumerate}  
+	\item  Un evento, por ejemplo, la interacción del usuario, produce un cambio en la vista.
+	\item Se despacha una acción asociada a ese evento. 
+	\item La acción es procesada por un "reducer", que se encarga de interpretar esa acción y aplicar el cambio sobre la "Store", o el estado central de la aplicación, conforme corresponda.
+\end{enumerate}
+
+Para operaciones asíncronas, como llamadas a APIs o eventos similares, Redux puede emplearse con middlewares que extienden su funcionalidad. \\ 
+Para éste caso tenemos "redux-thunk", que permite declarar acciones más allá de simple objectos Javascript, y declararlas como funciones. De ésta manera, pueden lanzarse diversas acciones dependiendo del estado de la petición o la operación, manteniendo la "Store" actualizada en todo momento. \\
+
+Las acciones se ejecutan de forma secuencial, evitando de esta manera condiciones de carrera o estados inconsistentes de los datos. \\
+
+\subsubsection {Estado inmutable}
+
+La "Store", o el estado de la aplicación, se trata de un objeto que contiene toda la información referente a ésta y se trata de forma inmutable. O lo que es lo mismo, cuando se debe actualizar el estado de la aplicación debido a una acción, los "reducers" crean una copia del estado anterior modificado, y éste substituye al estado anterior. \\
+
+Ésto resulta de especialmente eficiente cuando se deben tratar gran cantidad de datos con cambios constantes o sistemáticos. Resulta mucho más rápido que la comparación en más profundidad. \\
+
+Para realizar éstas operaciones se hace uso de librerias que tratan los objectos como inmutables, de la función Object.assign(...) ó si se dispone de la versión de Javascript ES6 en el proyecto, el operador "spread". \\
+
