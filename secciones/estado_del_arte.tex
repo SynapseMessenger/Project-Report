@@ -14,27 +14,59 @@ Se ha dedicado un apartado individualmente a cada una de las aplicaciones más r
 
 \section {Comparativa}
 
-% Please add the following required packages to your document preamble:
-% \usepackage{graphicx}
-\begin{table}[]
+\begin{table}[h]
 	\centering
-	\caption{My caption}
-	\label{my-label}
+	\label{comparativa-applicationes-mensajeria}
 	\resizebox{\textwidth}{!}{%
 		\begin{tabular}{|c|c|c|c|c|}
 			\hline
 			& \textbf{WhatsApp} & \textbf{Facebook Messenger} & \textbf{Telegram} & \textbf{Signal} \\ \hline
-			Cifrado punto a punto                                                                                                 &                   &                             &                   &                 \\ \hline
-			\begin{tabular}[c]{@{}c@{}}Cifrado punto a punto \\ activado por defecto\end{tabular}                                 &                   &                             &                   &                 \\ \hline
-			\begin{tabular}[c]{@{}c@{}}Implicado en compartir\\ datos con agencias de inteligencia\\ gubernamentales\end{tabular} &                   &                             &                   &                 \\ \hline
-			Colecciona datos de usuarios                                                                                          &                   &                             &                   &                 \\ \hline
-			Código abierto                                                                                                        &                   &                             &                   &                 \\ \hline
-			\begin{tabular}[c]{@{}c@{}}Claves de cifrado generadas\\  en el dispositivo\end{tabular}                              &                   &                             &                   &                 \\ \hline
-			\begin{tabular}[c]{@{}c@{}}Mensajes cifrados \\ con claves individuales\end{tabular}                                  &                   &                             &                   &                 \\ \hline
-			\begin{tabular}[c]{@{}c@{}}Se almacenan tiempos de envío\\ y/o IPs\end{tabular}                                       &                   &                             &                   &                 \\ \hline
-			\begin{tabular}[c]{@{}c@{}}Reciente auditoría \\ de código y/o protocolo\end{tabular}                                 &                   &                             &                   &                 \\ \hline
-			Posibilidad de registro anónimo                                                                                       &                   &                             &                   &                 \\ \hline
+			Cifrado punto a punto                                                                                                 & Sí                & Sí                          & Sí                & Sí              \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Cifrado punto a punto \\ activado por defecto\end{tabular}                                 & Sí                & No                          & No                & Sí              \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Implicado en compartir\\ datos con agencias de inteligencia\end{tabular} & Sí                & Sí                          & No                & No              \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Compañía colecciona \\ datos de usuarios\end{tabular}                                      & Sí                & Sí                          & Sí                & No              \\ \hline
+			Totalmente código abierto                                                                                             & No                & No                          & No                & Sí              \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Claves de cifrado generadas\\  en el dispositivo\end{tabular}                              & Sí                & Sí                          & Sí                & Sí              \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Mensajes cifrados \\ con claves individuales\end{tabular}                                  & Sí                & Sí                          & No                & Sí              \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Se almacenan tiempos de envío\\ y/o IPs\end{tabular}                                       & Sí                & Sí                          & Sí                & No              \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Reciente auditoría \\ de código y/o protocolo\end{tabular}                                 & No                & No                          & Sí                & Sí              \\ \hline
+			Posibilidad de registro anónimo                                                                                       & No                & No                          & No                & No              \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Compañía puede leer\\ contenido de mensajes\end{tabular}                                   & No                & Sí                          & Sí                & No              \\ \hline
 		\end{tabular}%
 	}
 \end{table}
+
+\subsubsection {WhatsApp}
+
+Con aproximadamente mil trescientos millones de usuarios diarios (Julio 2017), WhatsApp cuenta con la corona en el mercado de aplicaciones de mensajería. \\
+
+Fue fundada en 2009, por Jan Koum, y gracias a la adopción de internet en los dispositivos móviles y la ubiquidad de los mismos, ha crecido exponencialmente desde entonces. \\
+Su rápida adopción fue también debido a la enorme ventaja contra los SMS, que contaban con un límite de caracteres y su coste de uso era mucho mayor. \\
+
+En febrero de 2014, Facebook anunció su compra, y fue adquirida finalmente por 21800 millones de dólares. \\
+
+Gracias a una colaboración con Open Whispers, a día de hoy cuenta con la integración del protocolo Signal en todas sus comunicaciones; mensajes de texto, voz y videollamadas. \\ Todas sus formas de comunicación vienen cifradas punto a punto por defecto y de forma transparente al usuario. \\
+A efectos prácticos, WhatsApp protege a sus usuarios de espías intermedios y tampoco son capaces de leer el contenido de las comunicaciones en sus propios servidores. \\
+
+Sin embargo, WhatsApp sí que almacena los tiempos de envío de los mensajes, así como identidad del emisor y receptor de los mismos; entre otra tanta información catalogada como metadatos. \\
+
+Dichos metadatos pueden definirse de una forma bastante certera como la información referente a actividad. Es decir, no es contenido propiamente dicho, pero sí toda la información respecto a la naturaleza del mismo. \\
+Por tanto, en esta categoría entran aspectos como: Información respecto al dispositivo, posición GPS, contactos, horas de conexión, conexiones inalámbricas, duración de las comunicaciones, tamaño de los paquetes enviados, etc.
+
+Por otro lado, Facebook fue mencionado en los documentos filtrados por Edward Snowden en 2013 como una de las compañías que cedía el acceso a los datos de sus usuarios a la NSA (Agencia de seguridad nacional) de EEUU. \\
+
+En conclusión, WhatsApp se presenta como una herramienta de comunicación que cuenta con la tecnología y las herramientas adecuadas pero implementadas de forma que no se cubren completamente los aspectos necesarios para garantizar una privacidad absoluta de sus usuarios, así como la protección de los mismos frente a un escrutinio por parte de un adversario como una entidad gubernamental. \\
+
+\subsubsection {Facebook Messenger}
+
+Facebook Messenger es la aplicación de mensajería que acompaña a la aplicación móvil de la red social. \\
+Fue lanzada en 2004 bajo el nombre de Facebook Chat, y desde entonces ha sido adoptada por una enorme cantidad de usuarios. Uno de los posibles motivos de esta acogida puede ser el hecho de que Facebook la ha convertido en un requisito para establecer comunicaciones en la red social, de forma que es imposible continuar con la misma experiencia de uso en Facebook sin descargarla e instalarla. \\
+
+Como se ha mencionado anteriormente en la tabla comparativa, Facebook Messenger dispone de cifrado punto a punto en forma de chats secretos, que no están habilitados por defecto. \\
+En su uso normal, la aplicación solamente cifra el tráfico entre los usuarios y sus servidores. Es decir, la empresa es capaz de leer el contenido de las comunicaciones (tanto texto como contenido multimedia). \\
+
+Facebook Messenger es un claro ejemplo de la adopción de una tecnología que debería ser ubicua en todas las comunicaciones modernas, pero implementada con lo que parece ser una motivación puramente comercial, ya que la enorme mayoría de usuarios no conoce la existencia de ésta característica; y los que la conocen, aún son pocos los que la utilizan. \\
+
+
+
 
