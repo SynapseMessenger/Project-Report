@@ -1,8 +1,11 @@
-\documentclass[a4paper,11pt]{book}
+\documentclass[tikz,a4paper,11pt]{book}
 %\documentclass[a4paper,twoside,11pt,titlepage]{book}
 \usepackage{listings}
 \usepackage[utf8]{inputenc}
-\usepackage[spanish]{babel}
+\usepackage[spanish,es-noquoting]{babel}
+\usepackage{forest}
+\usepackage{adjustbox}
+\usetikzlibrary{arrows.meta,shapes,positioning,trees}
 
 % \usepackage[style=list, number=none]{glossary} %
 %\usepackage{titlesec}
@@ -39,7 +42,7 @@
 \newcommand{\myLocation}{Granada\xspace}
 \newcommand{\myTime}{\today\xspace}
 \newcommand{\myVersion}{Version 1.0\xspace}
-
+\newcommand{\innerxsep}{5mm}
 
 \hypersetup{
 pdfauthor = {\myName (mfernandezpranno@gmail.com)},
@@ -163,6 +166,15 @@ pdfproducer = {pdflatex}
   \penalty -\@Mi
 }
 \makeatother
+
+% Estilo de grafico de la seccion de planificacion
+\tikzset{
+	box/.style  = {draw, text width=4cm, inner xsep=\innerxsep, font=\sffamily, rectangle, rounded corners=2pt, thin, align=center, fill=white, fill opacity=0.8, text opacity=1},
+	double/.style = {text width=8cm+\innerxsep*2+.25cm},
+	goal/.style = {box, fill=red!20, double},
+	activity/.style = {box, fill=blue!20},
+	task/.style = {box, fill=yellow!75},
+}
 
 \usepackage{pdfpages}
 \begin{document}
