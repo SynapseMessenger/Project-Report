@@ -5,6 +5,8 @@
 \usepackage[spanish,es-noquoting]{babel}
 \usepackage{forest}
 \usepackage{adjustbox}
+\usepackage{caption}
+\usepackage{float}
 \usetikzlibrary{arrows.meta,shapes,positioning,trees}
 
 % \usepackage[style=list, number=none]{glossary} %
@@ -176,6 +178,7 @@ pdfproducer = {pdflatex}
 	task/.style = {box, fill=yellow!75},
 }
 
+
 \usepackage{pdfpages}
 \begin{document}
 \input{portada/portada}
@@ -183,7 +186,7 @@ pdfproducer = {pdflatex}
 \input{prefacios/prefacio}
 %\frontmatter
 \tableofcontents
-%\listoffigures
+\listoffigures
 %\listoftables
 %\mainmatter
 %\setlength{\parskip}{5pt}
