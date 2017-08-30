@@ -1,0 +1,40 @@
+\chapter{Estado del arte}
+
+Pese a que en los pasados años ha habido una creciente tendencia en la adopción de tecnologías de cifrado punto a punto en las aplicaciones de mensajería comerciales, ésto no significa directamente que los usuarios estén mejor protegidos o que los datos de las conversaciones privadas se traten de una forma más segura. \\
+
+Esto es debido a que aunque muchos servicios tienen la opción de activar el cifrado punto a punto, impidiendo al servidor intermedio, es decir, al proveedor del servicio (Faceook, Google, etc), interceptar y analizar el contenido, la mayoría de éstos no lo tienen como opción activada por defecto. \\
+
+Por lo tanto, el usuario ha de buscar y activar expresamente las funciones relacionadas con aumentar la seguridad, generalmente como la opción de ''Conversaciones secretas'', para que estas características se hagan efectivas. \\
+
+A continuación se ha realizado un análisis de las aplicaciones más populares de mensajería y una consideración de sus características de seguridad, así como de la usabilidad o facilidad de acceso de los usuarios a las mismas. \\
+
+Se ha dedicado un apartado individualmente a cada una de las aplicaciones más relevantes, haciendo hincapié en los pros y contras que presentan respecto a sus competidores. \\
+
+\pagebreak
+
+\section {Comparativa}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[]
+	\centering
+	\caption{My caption}
+	\label{my-label}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			& \textbf{WhatsApp} & \textbf{Facebook Messenger} & \textbf{Telegram} & \textbf{Signal} \\ \hline
+			Cifrado punto a punto                                                                                                 &                   &                             &                   &                 \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Cifrado punto a punto \\ activado por defecto\end{tabular}                                 &                   &                             &                   &                 \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Implicado en compartir\\ datos con agencias de inteligencia\\ gubernamentales\end{tabular} &                   &                             &                   &                 \\ \hline
+			Colecciona datos de usuarios                                                                                          &                   &                             &                   &                 \\ \hline
+			Código abierto                                                                                                        &                   &                             &                   &                 \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Claves de cifrado generadas\\  en el dispositivo\end{tabular}                              &                   &                             &                   &                 \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Mensajes cifrados \\ con claves individuales\end{tabular}                                  &                   &                             &                   &                 \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Se almacenan tiempos de envío\\ y/o IPs\end{tabular}                                       &                   &                             &                   &                 \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Reciente auditoría \\ de código y/o protocolo\end{tabular}                                 &                   &                             &                   &                 \\ \hline
+			Posibilidad de registro anónimo                                                                                       &                   &                             &                   &                 \\ \hline
+		\end{tabular}%
+	}
+\end{table}
+
