@@ -2,7 +2,7 @@
 
 El trabajo consiste en el desarrollo de un sistema de mensajería que implemente funcionalidades que protejan tanto la identidad como la privacidad de sus usuarios. \\
 
-Para ello, se han mezclado las dos tecnologías estado del arte en ambos panoramas, el protocolo Signal y el protocolo TOR. \\
+Para ello, la intención ha sido mezclar las dos tecnologías estado del arte en ambos panoramas, el protocolo Signal y el protocolo TOR. \\
 
 El servidor se ha desarrollado en Node.js, haciendo uso de la librería para el manejo de websockets Socket.io. \\
 
@@ -14,4 +14,7 @@ Para este fin se ha hecho uso de la tecnología React Native. \\
 
 El protocolo Signal se ha implementado mediante el uso de la librería creada por la organización OpenWhispersSystems para el desarrollo de proyectos en Javascript. \\
 
-********************* TODO:  Add TOR here. ******************
+
+En cuanto a la inclusión de TOR en la comunicación de la plataforma, se ha creado un hidden service (servicio en la red TOR), y se ha trabajado de cara a la conexión a través de esta red. Un requerimiento para conseguir esto, es entablar comunicación mediante el protocolo SOCKS, para el cual no existe actualmente adaptación por parte de la librería de websockets utilizada. \\ 
+A pesar de invertir una cantidad considerable de tiempo y esfuerzo en su inclusión, no se ha conseguido implementar la comunicación a través de esta red. Queda pues como una característica futura a implementar, en la que se trabajará fuera del marco del trabajo de fin de grado. \\ 
+

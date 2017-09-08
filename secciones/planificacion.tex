@@ -2,9 +2,15 @@
 
 \section{Historias de usuario}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Se ha abordado la planificación del proyecto siguiendo metologías ágiles, con historias de usuario definiendo la funcionalidad necesaria a implementar desde el punto de vista del usuario, y además, iterando sobre las tareas desde implementaciones básicas, pero funcionales, hasta conformar las más complejas y completas. \\ 
 
-\subsection{Milestone 1: Sistema de mensajería}
+Se ha planificado el desarrollo en tres grandes hitos: Servicio de mensajería, Uso del protocolo Signal y despliegue de la aplicación en la red TOR. \\
+Se han conseguido realizar, por tanto, dos de tres de estos hitos planteados inicialmente; el último de ellos no ha sido completado pero se ha realizado una investigación referente a la tecnología, el funcionamiento y las posibilidades de implementación de la solución al hito. \\ 
+
+A continuación se detallan, dividas en hitos, las distintas tareas realizadas: \\ 
+
+
+\subsection{Hito 1: Sistema de mensajería}
 \begin{adjustbox}{margin=2.5ex 5ex 2.5ex 2.5ex,center}
 	\begin{forest} for tree={
 	    growth parent anchor=south,
@@ -15,23 +21,34 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 	}   
 	%
 	[Sistema de mensajería, goal, name=agoal
-	    [Activity 1, activity
-	        [Task 1, task
-	        [Task 2, task
-	        [Task 2, task
-	        [Task 4, task] ] ] ] ]
-	    [Activity 2, activity
-	        [Task 1, task
-	        [Task 2, task
-	        [Task 2, task
-	        [Task 4, task] ] ] ] ] ]
+	    [Cliente, activity
+	        [1. Conexión básica con el servidor, task
+	       	[2. Mostrar mensaje de bienvenida\, logo y login, task
+	        [3. Mostrar usuarios conectados, task
+	        [4. Iniciar conversación con un usuario, task
+			[5. Mostrar usuario en la barra de navegación durante conversación, task
+			[6. Recibir mensajes enviados al usuario cuando éste se encuentra desconectado, task			
+	        [7. Link para volver a la lista de usuarios desde la conversación, task
+	        [8. Actualizar estado de usuarios en tiempo real cuando estos se conectan/desconectan, task
+	        [9. Mejora de estilos de vista\, presentación y efectos visuales, task	        
+	        [9. Conectar con servidor desplegado, task	  	        
+	        ] ] ] ] ] ] ] ] ] ] ]
+	    [Servidor, activity
+	        [1. Conexión básica con los clientes, task
+			[2. Permitir registro de usuarios en la aplicación mediante nombre, task
+	        [3. Enviar información respecto a usuarios conectados a los clientes, task
+	        [4. Redirigir mensajes entre clientes en las conversaciones, task
+	        [5. Almacenar mensajes cuando los usuarios están desconectados\, enviarlos cuando se conectan, task
+	        [6. Enviar actualizaciones de usuarios conectados/desconectados en tiempo real a los clientes, task
+ 	        [6. Desplegar en una máquina servidor, task
+	        ] ] ] ] ] ] ] ] ]
 	%           
 	\end{forest}
 \end{adjustbox}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Una vez alcanzado este hito, la funcionalidad del proyecto debía cubrir las necesidades básicas para mantener un sistema de chat entre múltiples usuarios en tiempo real. Supone la base sobre la que se implementarán las medidas de cifrado y seguridad.
 	
-\subsection{Milestone: Uso del protocolo Signal}
+\subsection{Hito 2: Uso del protocolo Signal}
 
 \begin{adjustbox}{margin=2.5ex 5ex 2.5ex 2.5ex,center}
 	\begin{forest} for tree={
@@ -43,23 +60,23 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 	}   
 	%
 	[Uso del protocolo Signal, goal, name=bgoal
-		[Activity 1, activity
-		[Task 1, task
-		[Task 2, task
-		[Task 2, task
-		[Task 4, task] ] ] ] ]
-		[Activity 2, activity
-		[Task 1, task
-		[Task 2, task
-		[Task 2, task
-		[Task 4, task] ] ] ] ] ]
+		[Cliente, activity
+		[1. Generación de claves de cifrado al iniciar la aplicación, task
+		[2. Solicitar y proveer claves al servidor según sea necesario durante la conversación, task
+		[3. Cargar sesión con el usuario con el que se desee establecer una conversación, task
+		[4. Descifrar mensajes entrantes usando claves de cifrado del usuario con el que se conversa, task
+		[5. Cifrar mensajes al enviarlos\, en el formato adecuado, task] ] ] ] ] ]
+		[Servidor, activity
+		[1. Redirigir peticiones y respuestas a peticiones de claves, task] ] ] 
 	%           
 	\end{forest}
 \end{adjustbox}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+En este hito se ha pretendido implementar la funcionalidad básica de cifrado del protocolo Signal, generando claves para cada mensaje intercambiado. \\
+Una nueva clave publica es derivada de la clave privada de los usuarios a cada mensaje que se desea enviar, y se comprueba la validez de los mensajes mediante la firma de los mensajes con la clave de identidad de cada usuario. \\ 
+Una vez implementado este punto, damos por implementada la funcionalidad que trata de preservar la privacidad en la comunicación. \\ 
 
-\subsection{Milestone 3: Despliegue en la red Tor}
+\subsection{Hito 3: Despliegue en la red Tor}
 \begin{adjustbox}{margin=2.5ex 5ex 2.5ex 2.5ex,center}
 	\begin{forest} for tree={
 			growth parent anchor=south,
@@ -70,18 +87,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 	}   
 	%
 	[Despliegue en la red Tor, goal, name=cgoal
-		[Activity 1, activity
-		[Task 1, task
-		[Task 2, task
-		[Task 2, task
-		[Task 4, task] ] ] ] ]
-		[Activity 2, activity
-		[Task 1, task
-		[Task 2, task
-		[Task 2, task
-		[Task 4, task] ] ] ] ] ] 
+		[Cliente, activity
+		[Conectar al servidor mediante la red TOR, task] ]
+		[Servidor, activity
+		[Deplegar servidor como hidden service, task
+		[Conectar clientes a través de la red TOR, task ] ] ] ] 
 	%           
 	\end{forest}
 \end{adjustbox}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+En este hito se pretende cubrir el aspecto de la protección de la identidad de los usuarios, mediante la conexión a través de la red TOR. Así como de la ofuscación del servidor, desplegándolo como como hidden service en la misma red. \\
