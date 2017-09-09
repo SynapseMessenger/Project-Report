@@ -31,3 +31,11 @@ Una vez implementada toda la funcionalidad del chat, se decoraron y adaptaron la
 En el ámbito del servidor, la funcionalidad esta centrada principalmente en actuar de intermediario entre el paso de eventos y mensajes entre los clientes. \\ 
 
 Como solución para el almacenamiento de los usuarios se ha recurrido a MongoDB, mediante la popular librería Mongoose para Node.js. \\
+
+Se ha implementado una solución para que en el caso de tener que migrar de solución de base de datos, no tocar el código referente a la lógica de negocio (chat). Se basa en una capa intermedia que actúa como \hyphenquote{spanish}{handler} de la base de datos, que consta de los métodos llamados desde la lógica para las operaciones referentes al manejo de datos persistentes. De forma que si se decidiera cambiar la capa de almacenamiento de datos por una alternativa, habría que adaptar dichos métodos y el resto del código del servidor quedaría intacto. \\ 
+
+En este hito se implementó también una solución para almacenar mensajes pendientes (enviados a los usuarios cuando estos se encuentran desconectados), junto con la información básica del modelo de usuario, nombre y estado de la conexión. \\
+
+En un principio, se implementó también la funcionalidad para el registro mediante contraseñas, siendo estas almacenadas cifradas en la base de datos, además del email. Para el cifrado se utilizó el paquete de Node.js llamado \hyphenquote{spanish}{bcrypt} que proporciona opciones y métodos para operaciones criptográficas. Finalmente, este enfoque de cara al registro fue sustituido por el uso únicamente del nombre de usuario, para simplificar el desarrollo. Sin embargo, en el caso de la puesta en producción de la aplicación, sería un trabajo de relativa trivialidad implementar dicha funcionalidad nuevamente. \\
+
+\section{Hito 2: Uso del protocolo Signal}
