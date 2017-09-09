@@ -12,6 +12,30 @@ En el presente proyecto se ha intentado explorar el alcance de las herramientas 
 
 \section {Tecnologías}
 \subsection {Protocolo Signal}
+
+El protocolo Signal, previamente llamado protocolo TextSecure, es un protocolo criptográfico que provee cifrado punto a punto para varios tipos de comunicación (mensajería, llamadas de voz y video-llamadas). \\
+
+Ha sido desarrollado por por Open Whispers Systems, autores de la aplicación de mensajería con el mismo nombre. Actualmente, es el protocolo de cifrado utilizado en WhatsApp, Google Allo en su modo incógnito y Facebook Messenger en sus conversaciones privadas. \\
+
+El protocolo combina distintos tipos de algoritmos y procesos: 
+\begin{itemize}
+\item {Double Ratchet:} Método utilizado para la derivación de claves públicas, utilizadas para el descifrado de cada mensaje. 
+\item {Triple Diffie-Hellman:} Método para asegurar el intercambio de claves en un canal inseguro. Basado en la dificultad de calcular logaritmos discretos en un cuerpo finito.
+\item {Curve25519:} Curva elíptica utilizada para la generación de pares de claves pública-privada.
+\item {AES-256:} (Advanced Encryption Standard, Rijndael) Protocolo de cifrado simétrico.
+\item {HMAC-SHA256:} Método utilizado para verificar la integridad de los datos y autenticar el mensaje.
+\end{itemize}
+
+En la librería que se ha utilizado para aplicar el protocolo, el procedimiento de uso es el siguiente: \\
+
+\begin{enumerate}
+	\item {Generación de paquete inicial de claves:} Identidad, claves efímeras iniciales y firma de la clave de identidad.
+	\item {Establecimiento de sesión:} Envío de las claves iniciales generadas al recepto de los mensajes.
+	\item {Generación de claves efímeras derivadas}: Envío posterior de estas para su uso por parte del receptor, para descifrar los mensajes.
+\end{enumerate}
+
+Establecer una sesión entre dos clientes significa compartir las claves generadas inicialmente.
+
 \subsection {The Onion Router}
 
 The Onion Router, también conocido por sus siglas como TOR, es un proyecto de software libre que ha permitido la creación de una red superpuesta a Internet, en la que el tráfico de paquetes se realiza de forma que \hyphenquote{spanish}{imposibilita} descubrir la identidad de los pares que participan en la comunicación. \\

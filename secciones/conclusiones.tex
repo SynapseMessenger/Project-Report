@@ -1,1 +1,11 @@
 \chapter{Conclusiones y trabajos futuros}
+
+Los recursos necesarios para desarrollar la aplicación se han encontrado en sitios web de libre acceso, el software propio de las librerías utilizadas referentes a los protocolos de comunicación y cifrado es de carácter libre y constan de licencias de código abierto. \\
+
+El objetivo principal del desarrollo se ha alcanzado en ese sentido, puesto que se ha comprobado la posibilidad del desarrollo de una aplicación que provea un medio de comunicación libre, seguro, privado y anónimo. \\ 
+
+Esta última característica no se ha conseguido implementar, en parte debido a la falta de adaptación de la librería de websockets elegida, pero también por la diferencia que supone el desarrollo de una aplicación de escritorio en Electron a un agente de navegador web convencional. La adaptación a la interfaz SOCKS podría haberse realizado de disponer de un cliente de navegador y más tiempo para el desarrollo; este es el principal punto a recalcar como trabajo futuro. \\
+
+Por otro lado, la funcionalidad referente a los mensajes pendientes se ha tenido que eliminar en pos de la implementación del cifrado Signal. Hubiera sido posible implementar un sistema de cero confianza en el servidor con mensajes pendientes, pero éstos tendrían que haber reutilizado claves de cifrado, en lugar de efímeras en cada mensaje. Otra posibilidad hubiese sido establecer una clave de cifrado para mensajes pendientes entre ambos usuarios. \\
+
+La intención es continuar el trabajo de la aplicación más allá del trabajo de fin de grado, implementando métodos para verificar la identidad de los usuarios y conversaciones en grupo. \\
