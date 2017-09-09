@@ -39,3 +39,30 @@ En este hito se implementó también una solución para almacenar mensajes pendi
 En un principio, se implementó también la funcionalidad para el registro mediante contraseñas, siendo estas almacenadas cifradas en la base de datos, además del email. Para el cifrado se utilizó el paquete de Node.js llamado \hyphenquote{spanish}{bcrypt} que proporciona opciones y métodos para operaciones criptográficas. Finalmente, este enfoque de cara al registro fue sustituido por el uso únicamente del nombre de usuario, para simplificar el desarrollo. Sin embargo, en el caso de la puesta en producción de la aplicación, sería un trabajo de relativa trivialidad implementar dicha funcionalidad nuevamente. \\
 
 \section{Hito 2: Uso del protocolo Signal}
+
+\subsection{Cliente}
+
+Como se ha mencionado anteriormente, la implementación del cifrado por el protocolo Signal viene dado por el uso de la librería que la organización autora del cifrado (Open Whisper Systems) ha puesto a disposición del público en sus repositorios. \\ 
+
+Dicha implementación puede dividirse en tres partes fundamentales: 
+
+\begin{itemize}
+\item {Generación de claves privada y de identidad cuando se lanza la aplicación}
+\item {Generación de claves públicas según sea necesario en cada mensaje enviado}
+\item {Uso de claves públicas de contactos para descifrar mensajes}
+\end{itemize}
+
+Las claves se generan el momento en el que el usuario introduce el nombre o alias con el que desea registrarse o iniciar sesión en la aplicación. Pese a ser un proceso computacionalmente pesado, lleva alrededor de un segundo y se produce simultáneamente con la conexión al servidor. Se ha implementado de esta manera para evitar en medida de lo posible el impacto del proceso sobre la experiencia de usuario. \\
+
+La implementación de las operaciones criptográficas de la librería utiliza el tipo de dato ArrayBuffer para el tratamiento de las claves, mientras que para el envío de las claves de un cliente a otro se han utilizado cadenas en base 64. Por lo tanto, ha sido necesaria la implementación de métodos que permitan la transformación de las claves entre ArrayBuffer, cadenas de texto y cadenas de texto en base 64. \\
+
+Por otro lado, se han implementado métodos que encadenan las distintas operaciones necesarias para la generación de las claves públicas de cifrado y de la generación del paquete inicial de claves (clave de identidad, clave de cifrado privada). \\
+
+Se ha extendido la funcionalidad previa al envío de mensajes para cifrarlos, y ha sido necesaria la extensión de los eventos al servidor, ya que es necesario solicitar claves de cifrado a los contactos cuando se recibe un mensaje, de forma que estos puedan ser descifrados a texto plano.
+
+\subsection{Servidor}
+
+En este hito el rol del servidor también es la de agente intermediario entre los contactos, con la diferencia de que ha de incluirse el manejo de eventos relativo al paso de claves entre los mismos.
+
+
+

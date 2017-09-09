@@ -74,6 +74,7 @@ Una vez alcanzado este hito, la funcionalidad del proyecto debía cubrir las nec
 
 En este hito se ha pretendido implementar la funcionalidad básica de cifrado del protocolo Signal, generando claves para cada mensaje intercambiado. \\
 Una nueva clave publica es derivada de la clave privada de los usuarios a cada mensaje que se desea enviar, y se comprueba la validez de los mensajes mediante la firma de los mensajes con la clave de identidad de cada usuario. \\ 
+El servidor se trata finalmente como una entidad en la que no se confía, y la información que pasa a través del mismo no es accesible en texto plano. \\
 Una vez implementado este punto, damos por implementada la funcionalidad que trata de preservar la privacidad en la comunicación. \\ 
 
 \subsection{Hito 3: Despliegue en la red Tor}
