@@ -1,4 +1,33 @@
 \chapter{Implementación}
 
-Como se ha mencionado anteriormente en la descripción de la aplicación, esta se encuentra dividida en dos partes fundamentales: El cliente y el servidor. \\
-Para alojar el código del proyecto, se ha creado una organización en Github: SynapseMessenger; bajo la cual se han creado los repositorios pertenecientes a los distintos aspectos del proyecto: Servidor, Cliente de escritorio, cliente de móvil y documentación. \\ 
+Para alojar el código del proyecto, se ha creado una organización en Github: SynapseMessenger; bajo la cual se han creado los repositorios pertenecientes a los distintos aspectos del proyecto: Servidor, cliente de escritorio, (cliente) aplicación móvil y documentación. \\ 
+
+Los hitos se han definido utilizando la funcionalidad que brinda Github para ello, y las tareas, por su parte, se han definido como \hyphenquote{spanish}{issues} o incidencias, de forma que las etiquetas de las mismas han servido también para calificarlas en función de su naturaleza (bug fix, historia de usuario, mejoras, investigación, etc). \\
+
+\section {Hito 1: Sistema de mensajería}
+
+\subsection{Cliente}
+La implementación inicial se hizo sin interfaz gráfica, a modo de prueba de la forma de uso de las librerías y experimentando con sus posibilidades. \\
+El siguiente paso fue la adaptación de este código a una aplicación sobre Electron, con vistas básicas sin estilo que sirvieran como guía sobre la que desarrollar la funcionalidad. 
+Posteriormente, se incluyo la librería de cifrado en el proyecto, sin intención de realizar aún trabajo en este aspecto, se trató de una prueba para comprobar la compatibilidad con la misma y anticipar futuros cambios debido a esto. \\
+La prueba dio resultado, ya que fue necesaria una adaptación en la forma en la que se cargan las librerías en un navegador normal para que funcionase en una aplicación con Electron. \\ 
+Afortunadamente no se trata del primer proyecto que hace frente a esta clase de problema y fue posible seguir la guía de un usuario, en la incidencia de referente al problema de compatibilidad, para cargar la librería de cifrado evitando los errores. \\ 
+El problema descrito y la solución para evitarlo se pueden leer en el siguiente link:
+\href{https://github.com/WhisperSystems/libsignal-protocol-javascript/issues/6}{Incidencia en el repositorio de Signal} \\
+
+Una vez comprobado que no existe ningún problema de compatibilidad en la carga de la librería de cifrado, y que se disponía de una base sólida sobre la que implementar la funcionalidad, se ha procedido a desarrollar la estructura de acciones, reducers y llamadas a las acciones desde las vistas propias de Redux; con el fin de disponer de una estructura clara en el estado de la aplicación para los eventos de la mensajería. \\
+
+La comunicación con el servidor se centra en el envío de mensajes con un nombre de evento descriptivo y una carga de información incluida, para manejar un constante cambio de la vista en función de la llegada y envío de mensajes/eventos se ha decidido crear un componente que englobe a aquellos componentes hijos sujetos a cambios por el chat, es decir, el componente que muestra el estado de los usuarios (Contactos) y el componente propio de la conversación (junto con sus componentes hijos: tables como la entrada de texto, etc.). Con esta solución se ha conseguido seguir la estructura propia de React, y mantener una actualización constante de la vista según sea necesario. \\
+
+La conexión con el servidor se produce la primera vez que dicho componente padre se monta en el DOM virtual. Mientras que la escucha a los eventos que se esperan del servidor se configura una vez que el objecto de conexión (socket) se actualiza, el componente es re-renderizado, y se detecta el cambio en el estado esperado referente a la correcta conexión con el servidor. \\
+
+Una vez conectado con el servidor y a la escucha de eventos, basta con anclar a dichos eventos las llamadas a funciones que despachen las acciones necesarias para actualizar el estado con los nuevos datos recibidos. Redux y React se encargarán de actualizar automáticamente las vistas cuando sea necesario. \\
+
+Una vez implementada toda la funcionalidad del chat, se decoraron y adaptaron las vistas con estilos propios de Materialize (la guía de estilos de Google). \\
+
+
+\subsection{Servidor}
+
+En el ámbito del servidor, la funcionalidad esta centrada principalmente en actuar de intermediario entre el paso de eventos y mensajes entre los clientes. \\ 
+
+Como solución para el almacenamiento de los usuarios se ha recurrido a MongoDB, mediante la popular librería Mongoose para Node.js. \\
