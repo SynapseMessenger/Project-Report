@@ -1,40 +1,42 @@
 \chapter{Implementación}
 
-Para alojar el código del proyecto, se ha creado una organización en Github: SynapseMessenger; bajo la cual se han creado los repositorios pertenecientes a los distintos aspectos del proyecto: Servidor, cliente de escritorio, (cliente) aplicación móvil y documentación. \\ 
+Para alojar el código del proyecto, se ha creado una organización en Github: SynapseMessenger; bajo la cual se han creado los repositorios pertenecientes a los distintos aspectos del proyecto: servidor, cliente de escritorio, aplicación móvil y documentación. \\ 
 
-Los hitos se han definido utilizando la funcionalidad que brinda Github para ello, y las tareas, por su parte, se han definido como \hyphenquote{spanish}{issues} o incidencias, de forma que las etiquetas de las mismas han servido también para calificarlas en función de su naturaleza (bug fix, historia de usuario, mejoras, investigación, etc). \\
+%TODO: Enlace a los repositorios?
+
+Los hitos se han definido utilizando la funcionalidad que brinda Github para ello, y las tareas, por su parte, se han definido como issues o incidencias, de forma que las etiquetas de las mismas han servido también para calificarlas en función de su naturaleza (bug fix, historia de usuario, mejoras, investigación, etc). \\
 
 \section {Hito 1: Sistema de mensajería}
 
 \subsection{Cliente}
-La implementación inicial se hizo sin interfaz gráfica, a modo de prueba de la forma de uso de las librerías y experimentando con sus posibilidades. \\
-El siguiente paso fue la adaptación de este código a una aplicación sobre Electron, con vistas básicas sin estilo que sirvieran como guía sobre la que desarrollar la funcionalidad. 
-Posteriormente, se incluyo la librería de cifrado en el proyecto, sin intención de realizar aún trabajo en este aspecto, se trató de una prueba para comprobar la compatibilidad con la misma y anticipar futuros cambios debido a esto. \\
-La prueba dio resultado, ya que fue necesaria una adaptación en la forma en la que se cargan las librerías en un navegador normal para que funcionase en una aplicación con Electron. \\ 
-Afortunadamente no se trata del primer proyecto que hace frente a esta clase de problema y fue posible seguir la guía de un usuario, en la incidencia de referente al problema de compatibilidad, para cargar la librería de cifrado evitando los errores. \\ 
-El problema descrito y la solución para evitarlo se pueden leer en el siguiente link:
-\href{https://github.com/WhisperSystems/libsignal-protocol-javascript/issues/6}{Incidencia en el repositorio de Signal} \\
+La implementación inicial se hizo sin interfaz gráfica,como prueba de la forma de uso de las librerías y experimentando con sus posibilidades. \\
 
-Una vez comprobado que no existe ningún problema de compatibilidad en la carga de la librería de cifrado, y que se disponía de una base sólida sobre la que implementar la funcionalidad, se ha procedido a desarrollar la estructura de acciones, reducers y llamadas a las acciones desde las vistas propias de Redux; con el fin de disponer de una estructura clara en el estado de la aplicación para los eventos de la mensajería. \\
+El siguiente paso fue la adaptación de este código a una aplicación creada sobre Electron, con vistas básicas sin estilo, sirviendo como guía sobre la cual desarrollar la funcionalidad. \\
 
-La comunicación con el servidor se centra en el envío de mensajes con un nombre de evento descriptivo y una carga de información incluida, para manejar un constante cambio de la vista en función de la llegada y envío de mensajes/eventos se ha decidido crear un componente que englobe a aquellos componentes hijos sujetos a cambios por el chat, es decir, el componente que muestra el estado de los usuarios (Contactos) y el componente propio de la conversación (junto con sus componentes hijos: tables como la entrada de texto, etc.). Con esta solución se ha conseguido seguir la estructura propia de React, y mantener una actualización constante de la vista según sea necesario. \\
+Posteriormente se incluyó la librería de cifrado en el proyecto, sin intención de realizar aún trabajo sobre este aspecto, tratándose únicamente de una prueba para comprobar la compatibilidad con la misma y para anticipar futuros cambios. Efectivamente, tras la inclusión de la librería fue necesario adaptar la forma en la que se cargan las librerías en un navegador normal para hacerlas funcionar correctamente en una aplicación con Electron. Afortunadamente no se trata del primer proyecto que hace frente a esta clase de problema y fue posible seguir la guía de un usuario, en una incidencia referente al problema de compatibilidad, para cargar la librería de cifrado evitando los errores. El problema descrito y la solución para evitarlo se pueden encontrar en el siguiente enlace:
+\href{https://github.com/WhisperSystems/libsignal-protocol-javascript/issues/6}{incidencia en el repositorio de Signal}. \\
 
-La conexión con el servidor se produce la primera vez que dicho componente padre se monta en el DOM virtual. Mientras que la escucha a los eventos que se esperan del servidor se configura una vez que el objecto de conexión (socket) se actualiza, el componente es re-renderizado, y se detecta el cambio en el estado esperado referente a la correcta conexión con el servidor. \\
+Una vez comprobado que no existía ningún otro problema de compatibilidad en la carga de la librería de cifrado, y que se disponía de una base sólida sobre la que implementar la funcionalidad, se procedió a desarrollar la estructura de acciones, reducers y llamadas a las acciones desde las vistas propias de Redux; con el fin de disponer de una estructura clara en el estado de la aplicación para los eventos de la mensajería. \\
+
+La comunicación con el servidor se ha basado en el envío de mensajes relativos a eventos, los cuales constan de un nombre descriptivo como identificación. Para manejar un constante cambio en las vistas en función de la llegada de nuevos eventos, se decidió crear un componente que englobe a aquellos componentes sujetos a cambios relativos al chat (contactos, conversación, etc). Con esta solución se consiguió seguir la estructura propia de React y mantener una actualización constante de la vista según sea necesario. \\
+
+La conexión con el servidor se produce la primera vez que dicho componente padre se monta en el DOM virtual; mientras que la escucha a los eventos que se esperan del servidor es configurada una vez que: el objecto de conexión (socket) se actualiza, el componente es re-renderizado y se detecta el cambio en el estado esperado referente a la correcta conexión con el servidor. \\
 
 Una vez conectado con el servidor y a la escucha de eventos, basta con anclar a dichos eventos las llamadas a funciones que despachen las acciones necesarias para actualizar el estado con los nuevos datos recibidos. Redux y React se encargarán de actualizar automáticamente las vistas cuando sea necesario. \\
 
-Una vez implementada toda la funcionalidad del chat, se decoraron y adaptaron las vistas con estilos propios de Materialize (la guía de estilos de Google). \\
+Una vez implementada toda la funcionalidad del chat, se adaptaron y embellecieron las vistas con estilos propios de Materialize (la guía de estilos de Google). \\
 
+%TODO: Referencia a materialize
 
 \subsection{Servidor}
 
-En el ámbito del servidor, la funcionalidad esta centrada principalmente en actuar de intermediario entre el paso de eventos y mensajes entre los clientes. \\ 
+En el ámbito del servidor, la funcionalidad se centra principalmente en actuar de intermediario entre el paso de eventos y mensajes entre los clientes. \\ 
 
-Como solución para el almacenamiento de los usuarios se ha recurrido a MongoDB, mediante la popular librería Mongoose para Node.js. \\
+Como solución para el almacenamiento de los usuarios se ha empleado MongoDB, mediante la popular librería Mongoose para Node.js. \\
 
-Se ha implementado una solución para que en el caso de tener que migrar de solución de base de datos, no tocar el código referente a la lógica de negocio (chat). Se basa en una capa intermedia que actúa como \hyphenquote{spanish}{handler} de la base de datos, que consta de los métodos llamados desde la lógica para las operaciones referentes al manejo de datos persistentes. De forma que si se decidiera cambiar la capa de almacenamiento de datos por una alternativa, habría que adaptar dichos métodos y el resto del código del servidor quedaría intacto. \\ 
+Se ha implementado una solución para que en el caso de tener que migrar de solución de base de datos, no sea necesario adaptar el código referente a la lógica de negocio (chat). Se basa en una capa intermedia que actúa como handler de la base de datos y que consta de los métodos llamados desde la lógica para las operaciones referentes al manejo de datos persistentes. De forma que si se decidiera cambiar la capa de almacenamiento de datos por una alternativa, bastaría con adaptar dichos métodos y el resto del código del servidor quedaría intacto. \\ 
 
-En este hito se implementó también una solución para almacenar mensajes pendientes (enviados a los usuarios cuando estos se encuentran desconectados), junto con la información básica del modelo de usuario, nombre y estado de la conexión. \\
+En este hito se implementó también una solución para almacenar mensajes pendientes (mensajes enviados a los usuarios cuando estos se encuentran desconectados), junto con la información básica del modelo de usuario, nombre y estado de la conexión. \\
 
 En un principio, se implementó también la funcionalidad para el registro mediante contraseñas, siendo estas almacenadas cifradas en la base de datos, además del email. Para el cifrado se utilizó el paquete de Node.js llamado \hyphenquote{spanish}{bcrypt} que proporciona opciones y métodos para operaciones criptográficas. Finalmente, este enfoque de cara al registro fue sustituido por el uso únicamente del nombre de usuario, para simplificar el desarrollo. Sin embargo, en el caso de la puesta en producción de la aplicación, sería un trabajo de relativa trivialidad implementar dicha funcionalidad nuevamente. \\
 
@@ -42,7 +44,7 @@ En un principio, se implementó también la funcionalidad para el registro media
 
 \subsection{Cliente}
 
-Como se ha mencionado anteriormente, la implementación del cifrado por el protocolo Signal viene dado por el uso de la librería que la organización autora del cifrado (Open Whisper Systems) ha puesto a disposición del público en sus repositorios. \\ 
+Como se ha mencionado anteriormente, la implementación del cifrado por el protocolo Signal viene dada por el uso de la librería que la organización autora del cifrado (Open Whisper Systems) ha puesto a disposición del público en sus repositorios. \\ 
 
 Dicha implementación puede dividirse en tres partes fundamentales: 
 
@@ -52,22 +54,18 @@ Dicha implementación puede dividirse en tres partes fundamentales:
 \item {Uso de claves públicas de contactos para descifrar mensajes}
 \end{itemize}
 
-Las claves se generan el momento en el que el usuario introduce el nombre o alias con el que desea registrarse o iniciar sesión en la aplicación. Pese a ser un proceso computacionalmente pesado, lleva alrededor de un segundo y se produce simultáneamente con la conexión al servidor. Se ha implementado de esta manera para evitar en medida de lo posible el impacto del proceso sobre la experiencia de usuario. \\
+Las claves se generan el momento en el que el usuario introduce el nombre o alias con el que desea registrarse o iniciar sesión en la aplicación. Pese a ser un proceso computacionalmente pesado, el tiempo de ejecución es de aproximadamente un segundo y se produce simultáneamente con la conexión al servidor. Se implementó de esta manera para evitar el impacto de dicho proceso sobre la experiencia de usuario. \\
 
-La implementación de las operaciones criptográficas de la librería utiliza el tipo de dato ArrayBuffer para el tratamiento de las claves, mientras que para el envío de las claves de un cliente a otro se han utilizado cadenas en base 64. Por lo tanto, ha sido necesaria la implementación de métodos que permitan la transformación de las claves entre ArrayBuffer, cadenas de texto y cadenas de texto en base 64. \\
+La implementación de las operaciones criptográficas de la librería utiliza el tipo de dato ArrayBuffer para el tratamiento de las claves, mientras que para el envío de las claves de un cliente a otro utilizaron cadenas en base 64. Por lo tanto,fue necesaria la implementación de métodos que permitan la transformación de las claves entre ArrayBuffer, cadenas de texto y cadenas de texto en base 64. \\
 
-Por otro lado, se han implementado métodos que encadenan las distintas operaciones necesarias para la generación de las claves públicas de cifrado y de la generación del paquete inicial de claves (clave de identidad, clave de cifrado privada). \\
+Por otro lado, se implementaron métodos para encadenar las distintas operaciones necesarias para la generación de las claves públicas de cifrado y del paquete inicial de claves (clave de identidad, clave de cifrado privada). \\
 
-Se ha extendido la funcionalidad previa al envío de mensajes para cifrarlos, y ha sido necesaria la extensión de los eventos al servidor, ya que es necesario solicitar claves de cifrado a los contactos cuando se recibe un mensaje, de forma que estos puedan ser descifrados a texto plano.
+Se extendió la funcionalidad previa al envío de mensajes para cifrarlos y fue necesaria la extensión de los eventos al servidor, ya que se debe solicitar claves de cifrado a los contactos cuando se recibe un mensaje para que estos puedan ser descifrados a texto plano.
 
 \subsection{Servidor}
 
-En este hito el rol del servidor también es la de agente intermediario entre los contactos, con la diferencia de que ha de incluirse el manejo de eventos relativo al paso de claves entre los mismos.
+En este hito el rol del servidor también es el de agente intermediario entre los contactos, con la diferencia de que ha de incluirse el manejo de eventos relativo al paso de claves entre los mismos.
 
 \section{Hito 3: Despliegue en la red Tor}
 
-El último hito consiste en incluir la funcionalidad dedicada a proteger la identidad de los usuarios mediante el uso de la red TOR. Para ello, se ha desplegado el servidor como un hidden service y se ha trabajado en conectar los clientes al mismo utilizando la interfaz SOCKS5. Por desgracia, no se ha podido completar este último paso. \\ 
-
-
-
-
+El último hito consiste en incluir la funcionalidad dedicada a proteger la identidad de los usuarios mediante el uso de la red TOR. Para ello, se desplegó el servidor como un hidden service y se trabajó en conectar los clientes al mismo utilizando la interfaz SOCKS5. Por desgracia, no se ha podido completar este último paso por motivos que serán explicados en el \autoref{chap:conclusiones}. \\ 
