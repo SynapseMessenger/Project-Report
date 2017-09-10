@@ -107,3 +107,16 @@ Una vez implementado este punto, damos por implementada la funcionalidad que tra
 \end{adjustbox}
 
 En este hito se pretende cubrir el aspecto de la protección de la identidad de los usuarios, mediante la conexión a través de la red TOR. Así como de la ofuscación del servidor, desplegándolo como hidden service en la misma red. \\
+
+\section{Diagrama de componentes}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{imagenes/diagrama-componentes}
+	\caption{Diagrama de componentes}
+	\label{fig:desktop-landing-page}
+\end{figure}
+
+Las aplicaciones React se estructuran en componentes ordenados en una jerarquía padre-hijo, donde los hijos reciben propiedades (props) del padre, y notifican a este de cambios en el estado según la interacción del usuario a través de llamadas a funciones, también recibidas por el mismo mecanismo que las propiedades.\\ 
+
+Debido a esta naturaleza de React no se ha realizado un diagrama de clases UML. Sino que se ha realizado un diagrama donde se representan estas relaciones padre-hijo entre componentes y se hace distinción entre aquellos puramente representacionales (sin lógica) y aquellos que despachan acciones. \\ 
