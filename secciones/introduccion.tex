@@ -8,8 +8,6 @@ La importancia de este tipo de tecnologías radica en la protección de un indiv
 
 En el presente proyecto se ha intentado explorar el alcance de las herramientas y librerías de código libre, tanto en materia de privacidad como anonimato. Y así mismo, la viabilidad de la creación de un software que proteja a sus usuarios, elaborado a manos de un único desarrollador con conocimientos de criptografía, programación e ingeniería del software.
 
-%\emph{ This is a quote }
-
 \section {Tecnologías}
 \subsection {Protocolo Signal}
 
@@ -19,14 +17,12 @@ Ha sido desarrollado por por Open Whispers Systems, autores de la aplicación de
 
 El protocolo combina distintos tipos de algoritmos y procesos: 
 \begin{itemize}
-\item {Double Ratchet:} Método utilizado para la derivación de claves públicas, utilizadas para el descifrado de cada mensaje. 
-\item {Triple Diffie-Hellman:} Método para asegurar el intercambio de claves en un canal inseguro. Basado en la dificultad de calcular logaritmos discretos en un cuerpo finito.
-\item {Curve25519:} Curva elíptica utilizada para la generación de pares de claves pública-privada.
-\item {AES-256:} (Advanced Encryption Standard, Rijndael) Protocolo de cifrado simétrico.
-\item {HMAC-SHA256:} Método utilizado para verificar la integridad de los datos y autenticar el mensaje.
+\item {Double Ratchet:} Método utilizado para la derivación de claves públicas, utilizadas para el descifrado de cada mensaje. \cite{WikiDoubleRatchet}
+\item {Triple Diffie-Hellman:} Método para asegurar el intercambio de claves en un canal inseguro. Basado en la dificultad de calcular logaritmos discretos en un cuerpo finito. \cite{WikiDiffieHellman}
+\item {Curve25519:} Curva elíptica utilizada para la generación de pares de claves pública-privada. \cite{WikiCurve25519}
+\item {AES-256:} (Advanced Encryption Standard, Rijndael) Protocolo de cifrado simétrico. \cite{WikiAES}
+\item {HMAC-SHA256:} Método utilizado para verificar la integridad de los datos y autenticar el mensaje. \cite{WikiHMAC}
 \end{itemize}
-
-%TODO: Referencias a los algoritmos en wikipedia o alguna pagina web.
 
 En la librería empleada para la aplicación del protocolo, el procedimiento de uso es el siguiente:
 
@@ -42,9 +38,8 @@ Establecer una sesión entre dos clientes significa compartir las claves generad
 
 The Onion Router, también conocido por sus siglas como TOR, es un proyecto de software libre que ha permitido la creación de una red superpuesta a Internet, en la que el tráfico de paquetes se realiza de forma que imposibilita descubrir la identidad de los pares que participan en la comunicación. \\
 
-Esto se consigue haciendo que en cada nodo por el que pasan los paquetes estos se cifren sucesivamente, dando lugar a un cifrado por capas donde la información previa sea inaccesible para un nodo intermedio o para alguna entidad maliciosa actuando de \hyphenquote{spanish}{man in the middle}. \\
-
-%TODO: Referencia a "man in the middle".
+Esto se consigue haciendo que en cada nodo por el que pasan los paquetes estos se cifren sucesivamente, dando lugar a un cifrado por capas donde la información previa sea inaccesible para un nodo intermedio o para alguna entidad maliciosa actuando de \hyphenquote{spanish}{man in the middle}
+\cite{WikiManInTheMiddle}. \\
 
 Los ámbitos de uso de TOR van desde la actividad cotidiana hasta su aplicación para asegurar comunicaciones en zonas de conflicto bélico. También es conocido por sustentar la denominada \hyphenquote{spanish}{Darknet} ó \hyphenquote{spanish}{Deepweb}, cuyo nombre denota las actividades ilícitas que se llevan a cabo bajo el manto de anonimato y privacidad que brinda la tecnología. \\
 
@@ -79,18 +74,14 @@ Las aplicaciones que deseen comunicarse mediante TOR pueden hacerlo siguiendo la
 
 Una vez conectado a la red, el usuario solicita a un servicio de directorio información sobre la red (Nodos OR), y decide un camino aleatorio para los paquetes. Este camino consta de un nodo de entrada, un nodo intermedio y un nodo de salida. \\
 
-El camino de la comunicación se genera de forma sucesiva: primero generando las claves de cifrado, posteriormente aplicando un Diffie-Hellman\cite{WikiDiffieHellman} entre los puntos a comunicarse y por último el envío de las claves y comunicación cifrada mediante RSA (claves pública y privada). \\
+El camino de la comunicación se genera de forma sucesiva: primero generando las claves de cifrado, posteriormente aplicando un Diffie-Hellman\cite{WikiDiffieHellman} entre los puntos a comunicarse y por último el envío de las claves y comunicación cifrada mediante RSA\cite{WikiRSA} (claves pública y privada). \\
 
-%TODO: Referencias a Diffie-Helman y a RSA.
-
-Una vez que las claves RSA han sido establecidas, este es considerado como un medio seguro para la comunicación, y se procede al envío de los paquetes que irán encapsulados en capas de cifrado que se podrán romper a cada salto hasta llegar al destino. \\ 
-
-%TODO: Refrasear lo ultimo, lo de los saltos.
+Una vez que las claves RSA han sido establecidas, este es considerado como un medio seguro para la comunicación, y se procede al envío de los paquetes que irán encapsulados en capas de cifrado que cada nodo respectivo podrá descifrar, hasta llegar al destino. \\ 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{imagenes/tor_keys}
-	\caption{Funcionamiento de la red Tor.}
+	\caption{Cifrado en cada nodo, red TOR.}
 	\caption*{\small \url {https://svn.torproject.org/svn/projects/presentations/security-part2-anon/}}
 	\label{fig:torkeys}
 \end{figure}
@@ -175,6 +166,14 @@ El proceso de actualización de estado en Redux es el siguiente:
 	\item Se despacha una acción asociada a ese evento. 
 	\item La acción es procesada por un reducer, que se encarga de interpretar esa acción y aplicar el cambio sobre la Store, o el estado central de la aplicación, conforme corresponda.
 \end{enumerate}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{imagenes/flujo-informacion-redux}
+	\caption{Flujo de información en Redux}
+	\caption*{\small \url {https://hackernoon.com/thinking-in-redux-when-all-youve-known-is-mvc-c78a74d35133}}
+	\label{fig:flujo-informacion-redux}
+\end{figure}
 
 Para operaciones asíncronas, como llamadas a APIs o eventos similares, Redux puede emplearse con middlewares que extienden su funcionalidad. Para este caso tenemos \hyphenquote{spanish}{redux-thunk}, que permite declarar acciones más allá de simple objectos Javascript, y declararlas como funciones. De esta manera pueden lanzarse diversas acciones dependiendo del estado de la petición o la operación, manteniendo la Store actualizada en todo momento. \\
 
