@@ -2,12 +2,19 @@
 
 \section{Historias de usuario}
 
-Se ha abordado la planificación del proyecto siguiendo metologías ágiles, con historias de usuario definiendo la funcionalidad necesaria a implementar desde el punto de vista del usuario, y además, iterando sobre las tareas desde implementaciones básicas, pero funcionales, hasta conformar las más complejas y completas. \\ 
+Se ha abordado la planificación del proyecto siguiendo metodologías ágiles, con historias de usuario definiendo la funcionalidad necesaria a implementar desde el punto de vista del usuario, y además, iterando sobre las tareas desde implementaciones básicas, pero funcionales, hasta conformar las más complejas y completas. \\ 
 
-Se ha planificado el desarrollo en tres grandes hitos: Servicio de mensajería, Uso del protocolo Signal y despliegue de la aplicación en la red TOR. \\
-Se han conseguido realizar, por tanto, dos de tres de estos hitos planteados inicialmente; el último de ellos no ha sido completado pero se ha realizado una investigación referente a la tecnología, el funcionamiento y las posibilidades de implementación de la solución al hito. \\ 
+Se ha planificado el desarrollo en tres grandes hitos:
 
-A continuación se detallan, dividas en hitos, las distintas tareas realizadas: \\ 
+\begin{enumerate}
+	\item \textbf{Servicio de mensajería}
+	\item \textbf{Uso del protocolo Signal}
+	\item \textbf{Despliegue de la aplicación en la red TOR}
+\end{enumerate}
+
+Se han conseguido realizar únicamente dos de tres de estos hitos planteados inicialmente; el último de ellos no ha sido completado pero se ha realizado una investigación referente a la tecnología, el funcionamiento y las posibilidades de implementación de la solución al hito. \\ 
+
+A continuación se detallan, agrupadas por hitos, las distintas tareas realizadas: \\ 
 
 
 \subsection{Hito 1: Sistema de mensajería}
@@ -23,7 +30,7 @@ A continuación se detallan, dividas en hitos, las distintas tareas realizadas: 
 	[Sistema de mensajería, goal, name=agoal
 	    [Cliente, activity
 	        [1. Conexión básica con el servidor, task
-	       	[2. Mostrar mensaje de bienvenida\, logo y login, task
+	       	[2. Mostrar mensaje de bienvenida{,} logo y login, task
 	        [3. Mostrar usuarios conectados, task
 	        [4. Iniciar conversación con un usuario, task
 			[5. Mostrar usuario en la barra de navegación durante conversación, task
@@ -46,7 +53,7 @@ A continuación se detallan, dividas en hitos, las distintas tareas realizadas: 
 	\end{forest}
 \end{adjustbox}
 
-Una vez alcanzado este hito, la funcionalidad del proyecto debía cubrir las necesidades básicas para mantener un sistema de chat entre múltiples usuarios en tiempo real. Supone la base sobre la que se implementarán las medidas de cifrado y seguridad.
+Una vez alcanzado este hito, la funcionalidad del proyecto cubre las necesidades básicas para mantener un sistema de chat entre múltiples usuarios en tiempo real. Esto supone la base sobre la que se implementarán las medidas de cifrado y seguridad.
 	
 \subsection{Hito 2: Uso del protocolo Signal}
 
@@ -65,7 +72,7 @@ Una vez alcanzado este hito, la funcionalidad del proyecto debía cubrir las nec
 		[2. Solicitar y proveer claves al servidor según sea necesario durante la conversación, task
 		[3. Cargar sesión con el usuario con el que se desee establecer una conversación, task
 		[4. Descifrar mensajes entrantes usando claves de cifrado del usuario con el que se conversa, task
-		[5. Cifrar mensajes al enviarlos\, en el formato adecuado, task] ] ] ] ] ]
+		[5. Cifrar mensajes al enviarlos{,} en el formato adecuado, task] ] ] ] ] ]
 		[Servidor, activity
 		[1. Redirigir peticiones y respuestas a peticiones de claves, task] ] ] 
 	%           
@@ -73,8 +80,10 @@ Una vez alcanzado este hito, la funcionalidad del proyecto debía cubrir las nec
 \end{adjustbox}
 
 En este hito se ha pretendido implementar la funcionalidad básica de cifrado del protocolo Signal, generando claves para cada mensaje intercambiado. \\
-Una nueva clave publica es derivada de la clave privada de los usuarios a cada mensaje que se desea enviar, y se comprueba la validez de los mensajes mediante la firma de los mensajes con la clave de identidad de cada usuario. \\ 
+
+Una nueva clave publica es derivada de la clave privada de los usuarios a cada mensaje que se desea enviar, y se comprueba la validez de los mensajes mediante la firma de los mismos con la clave de identidad de cada usuario.
 El servidor se trata finalmente como una entidad en la que no se confía, y la información que pasa a través del mismo no es accesible en texto plano. \\
+
 Una vez implementado este punto, damos por implementada la funcionalidad que trata de preservar la privacidad en la comunicación. \\ 
 
 \subsection{Hito 3: Despliegue en la red Tor}
@@ -97,4 +106,4 @@ Una vez implementado este punto, damos por implementada la funcionalidad que tra
 	\end{forest}
 \end{adjustbox}
 
-En este hito se pretende cubrir el aspecto de la protección de la identidad de los usuarios, mediante la conexión a través de la red TOR. Así como de la ofuscación del servidor, desplegándolo como como hidden service en la misma red. \\
+En este hito se pretende cubrir el aspecto de la protección de la identidad de los usuarios, mediante la conexión a través de la red TOR. Así como de la ofuscación del servidor, desplegándolo como hidden service en la misma red. \\

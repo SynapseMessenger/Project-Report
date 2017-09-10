@@ -13,7 +13,7 @@ En el presente proyecto se ha intentado explorar el alcance de las herramientas 
 \section {Tecnologías}
 \subsection {Protocolo Signal}
 
-El protocolo Signal, previamente llamado protocolo TextSecure, es un protocolo criptográfico que provee cifrado punto a punto para varios tipos de comunicación (mensajería, llamadas de voz y video-llamadas). \\
+El protocolo Signal, previamente llamado protocolo TextSecure, es un protocolo criptográfico que provee cifrado punto a punto para varios tipos de comunicación (mensajería, llamadas de voz y vídeo llamadas). \\
 
 Ha sido desarrollado por por Open Whispers Systems, autores de la aplicación de mensajería con el mismo nombre. Actualmente, es el protocolo de cifrado utilizado en WhatsApp, Google Allo en su modo incógnito y Facebook Messenger en sus conversaciones privadas. \\
 
@@ -26,19 +26,21 @@ El protocolo combina distintos tipos de algoritmos y procesos:
 \item {HMAC-SHA256:} Método utilizado para verificar la integridad de los datos y autenticar el mensaje.
 \end{itemize}
 
-En la librería que se ha utilizado para aplicar el protocolo, el procedimiento de uso es el siguiente: \\
+%TODO: Referencias a los algoritmos en wikipedia o alguna pagina web.
+
+En la librería empleada para la aplicación del protocolo, el procedimiento de uso es el siguiente:
 
 \begin{enumerate}
-	\item {Generación de paquete inicial de claves:} Identidad, claves efímeras iniciales y firma de la clave de identidad.
-	\item {Establecimiento de sesión:} Envío de las claves iniciales generadas al recepto de los mensajes.
-	\item {Generación de claves efímeras derivadas}: Envío posterior de estas para su uso por parte del receptor, para descifrar los mensajes.
+	\item {Generación de paquete inicial de claves:} identidad, claves efímeras iniciales y firma de la clave de identidad.
+	\item {Establecimiento de sesión:} envío de las claves iniciales generadas al receptor de los mensajes.
+	\item {Generación de claves efímeras derivadas}: envío posterior de estas para su uso por parte del receptor, para descifrar los mensajes.
 \end{enumerate}
 
 Establecer una sesión entre dos clientes significa compartir las claves generadas inicialmente.
 
 \subsection {The Onion Router}
 
-The Onion Router, también conocido por sus siglas como TOR, es un proyecto de software libre que ha permitido la creación de una red superpuesta a Internet, en la que el tráfico de paquetes se realiza de forma que \hyphenquote{spanish}{imposibilita} descubrir la identidad de los pares que participan en la comunicación. \\
+The Onion Router, también conocido por sus siglas como TOR, es un proyecto de software libre que ha permitido la creación de una red superpuesta a Internet, en la que el tráfico de paquetes se realiza de forma que imposibilita descubrir la identidad de los pares que participan en la comunicación. \\
 
 Esto se consigue haciendo que en cada nodo por el que pasan los paquetes estos se cifren sucesivamente, dando lugar a un cifrado por capas donde la información previa sea inaccesible para un nodo intermedio o para alguna entidad maliciosa actuando de \hyphenquote{spanish}{man in the middle}. \\
 
@@ -56,7 +58,7 @@ Los ámbitos de uso de TOR van desde la actividad cotidiana hasta su aplicación
 
 \subsubsection {Hidden Services}
 
-Los \hyphenquote{spanish}{hidden services} son, como su nombre indica, servicios alojados en la red TOR que se comunican con sus usuarios de forma exclusiva por medio de la misma. El dominio para acceder a los hidden services se trata de un hash de 16 caracteres derivado de su clave privada y acabado en ``.onion". \\
+Los hidden services son, como su nombre indica, servicios alojados en la red TOR que se comunican con sus usuarios de forma exclusiva por medio de la misma. El dominio para acceder a los hidden services se trata de un hash de 16 caracteres derivado de su clave privada y acabado en ``.onion". \\
 
 Los usuarios hacen uso de los \hyphenquote{spanish}{rendezvous points} ó puntos de encuentro (OR que actúan como tales), para conectarse con los hidden services. Es en este punto donde se realiza el intercambio de claves entre usuario y servicio, con el punto de encuentro como intermediario y mediador en la comunicación. \\ 
 
@@ -77,7 +79,7 @@ Las aplicaciones que deseen comunicarse mediante TOR pueden hacerlo siguiendo la
 
 Una vez conectado a la red, el usuario solicita a un servicio de directorio información sobre la red (Nodos OR), y decide un camino aleatorio para los paquetes. Este camino consta de un nodo de entrada, un nodo intermedio y un nodo de salida. \\
 
-El camino de la comunicación se genera de forma sucesiva: primero generando las claves de cifrado, posteriormente aplicando un \hyphenquote{spanish}{Diffie-Hellman} entre los puntos a comunicarse y por último el envío de las claves y comunicación cifrada mediante \hyphenquote{spanish}{RSA} (claves pública y privada). \\
+El camino de la comunicación se genera de forma sucesiva: primero generando las claves de cifrado, posteriormente aplicando un Diffie-Hellman\cite{WikiDiffieHellman} entre los puntos a comunicarse y por último el envío de las claves y comunicación cifrada mediante RSA (claves pública y privada). \\
 
 %TODO: Referencias a Diffie-Helman y a RSA.
 
@@ -122,7 +124,7 @@ El modelo de Node.js esta basado en eventos y operaciones de E/S no bloqueantes,
 
 \subsection {Websockets}
 
-Websocket es un protocolo que propociona un canal de comunicación bidireccional entre cliente y servidor sobre un mismo socket TCP. \\
+Websocket es un protocolo que proporciona un canal de comunicación bidireccional entre cliente y servidor sobre un mismo socket TCP. \\
 
 El uso de sesiones de este tipo es especialmente útil en aplicaciones donde es ventajoso que el servidor pueda enviar datos también al cliente; siendo este caso imposible en las formas de comunicación convencionales entre cliente y servidor como XHR (AJAX), donde es el cliente el encargado de iniciar cada intercambio de información. \\
 
@@ -171,16 +173,16 @@ El proceso de actualización de estado en Redux es el siguiente:
 \begin{enumerate}  
 	\item  Un evento, por ejemplo la interacción del usuario, produce un cambio en la vista.
 	\item Se despacha una acción asociada a ese evento. 
-	\item La acción es procesada por un \hyphenquote{spanish}{reducer}, que se encarga de interpretar esa acción y aplicar el cambio sobre la \hyphenquote{spanish}{Store}, o el estado central de la aplicación, conforme corresponda.
+	\item La acción es procesada por un reducer, que se encarga de interpretar esa acción y aplicar el cambio sobre la Store, o el estado central de la aplicación, conforme corresponda.
 \end{enumerate}
 
-Para operaciones asíncronas, como llamadas a APIs o eventos similares, Redux puede emplearse con middlewares que extienden su funcionalidad. Para este caso tenemos \hyphenquote{spanish}{redux-thunk}, que permite declarar acciones más allá de simple objectos Javascript, y declararlas como funciones. De esta manera pueden lanzarse diversas acciones dependiendo del estado de la petición o la operación, manteniendo la \hyphenquote{spanish}{Store} actualizada en todo momento. \\
+Para operaciones asíncronas, como llamadas a APIs o eventos similares, Redux puede emplearse con middlewares que extienden su funcionalidad. Para este caso tenemos \hyphenquote{spanish}{redux-thunk}, que permite declarar acciones más allá de simple objectos Javascript, y declararlas como funciones. De esta manera pueden lanzarse diversas acciones dependiendo del estado de la petición o la operación, manteniendo la Store actualizada en todo momento. \\
 
 Las acciones se ejecutan de forma secuencial, evitando de esta manera condiciones de carrera o estados inconsistentes de los datos. \\
 
 \subsubsection {Estado inmutable}
 
-La \hyphenquote{spanish}{Store}, o el estado de la aplicación, se trata de un objeto que contiene toda la información referente a esta y se trata de forma inmutable. O lo que es lo mismo, cuando se debe actualizar el estado de la aplicación debido a una acción, los \hyphenquote{spanish}{reducers} crean una copia del estado anterior modificado, y este substituye al estado anterior. Esto resulta de especialmente eficiente cuando se deben tratar gran cantidad de datos con cambios constantes o sistemáticos. Resulta mucho más rápido que la comparación en más profundidad. \\
+La Store, o el estado de la aplicación, se trata de un objeto que contiene toda la información referente a esta y se trata de forma inmutable. O lo que es lo mismo, cuando se debe actualizar el estado de la aplicación debido a una acción, los reducers crean una copia del estado anterior modificado, y este substituye al estado anterior. Esto resulta de especialmente eficiente cuando se deben tratar gran cantidad de datos con cambios constantes o sistemáticos. Resulta mucho más rápido que la comparación en más profundidad. \\
 
-Para realizar estas operaciones se hace uso de librerias que tratan los objectos como inmutables, de la función Object.assign(...) ó si se dispone de la versión de Javascript ES6 en el proyecto, el operador \hyphenquote{spanish}{spread}. \\
+Para realizar estas operaciones se hace uso de librerias que tratan los objectos como inmutables, de la función Object.assign(...) ó si se dispone de la versión de Javascript ES6 en el proyecto, el operador spread. \\
 
