@@ -2,7 +2,12 @@
 
 Para alojar el código del proyecto, se ha creado una organización en Github: SynapseMessenger; bajo la cual se han creado los repositorios pertenecientes a los distintos aspectos del proyecto: servidor, cliente de escritorio, aplicación móvil y documentación. \\ 
 
-%TODO: Enlace a los repositorios?
+\begin{itemize}
+	\item {\href{https://github.com/SynapseMessenger/Synapse-Desktop}{Cliente de escritorio}}
+	\item {\href{https://github.com/SynapseMessenger/Synapse-Server}{Servidor}}
+	\item {\href{https://github.com/SynapseMessenger/Synapse-App}{Aplicación móvil}}
+	\item {\href{https://github.com/SynapseMessenger/Project-Report}{Documentación}}
+\end{itemize}
 
 Los hitos se han definido utilizando la funcionalidad que brinda Github para ello, y las tareas, por su parte, se han definido como issues o incidencias, de forma que las etiquetas de las mismas han servido también para calificarlas en función de su naturaleza (bug fix, historia de usuario, mejoras, investigación, etc). \\
 
@@ -24,9 +29,7 @@ La conexión con el servidor se produce la primera vez que dicho componente padr
 
 Una vez conectado con el servidor y a la escucha de eventos, basta con anclar a dichos eventos las llamadas a funciones que despachen las acciones necesarias para actualizar el estado con los nuevos datos recibidos. Redux y React se encargarán de actualizar automáticamente las vistas cuando sea necesario. \\
 
-Una vez implementada toda la funcionalidad del chat, se adaptaron y embellecieron las vistas con estilos propios de Materialize (la guía de estilos de Google). \\
-
-%TODO: Referencia a materialize
+Una vez implementada toda la funcionalidad del chat, se adaptaron y embellecieron las vistas con estilos propios de Materialize \cite{MaterializeGoogle} (la guía de estilos de Google). \\
 
 \subsection{Servidor}
 
@@ -65,6 +68,8 @@ Se extendió la funcionalidad previa al envío de mensajes para cifrarlos y fue 
 \subsection{Servidor}
 
 En este hito el rol del servidor también es el de agente intermediario entre los contactos, con la diferencia de que ha de incluirse el manejo de eventos relativo al paso de claves entre los mismos.
+
+\newpage
 
 \section{Hito 3: Despliegue en la red Tor}
 
