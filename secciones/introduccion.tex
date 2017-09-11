@@ -4,7 +4,7 @@
 
 La criptografía es la técnica mas poderosa en existencia para preservar la privacidad. Un individuo es capaz de proteger información mediante algoritmos y métodos matemáticos de forma que ningún adversario sea capaz de descubrirla, sin importar la cantidad de esfuerzo (o capacidad de cómputo) que este invierta. \\
 
-La importancia de este tipo de tecnologías radica en la protección de un individuo, sus acciones e identidad, en una realidad cada vez más conectada a Internet. \\
+La importancia de este tipo de tecnologías radica en la protección de un individuo, sus acciones e identidad, en una realidad cada vez más conectada a Internet.  \cite{Moral2015} \\
 
 En el presente proyecto se ha intentado explorar el alcance de las herramientas y librerías de código libre, tanto en materia de privacidad como anonimato. Y así mismo, la viabilidad de la creación de un software que proteja a sus usuarios, elaborado a manos de un único desarrollador con conocimientos de criptografía, programación e ingeniería del software.
 
@@ -17,8 +17,8 @@ Ha sido desarrollado por por Open Whispers Systems, autores de la aplicación de
 
 El protocolo combina distintos tipos de algoritmos y procesos: 
 \begin{itemize}
-\item {Double Ratchet:} Método utilizado para la derivación de claves públicas, utilizadas para el descifrado de cada mensaje. \cite{WikiDoubleRatchet}
-\item {Triple Diffie-Hellman:} Método para asegurar el intercambio de claves en un canal inseguro. Basado en la dificultad de calcular logaritmos discretos en un cuerpo finito. \cite{WikiDiffieHellman}
+\item {Double Ratchet:} Método utilizado para la derivación de claves públicas, utilizadas para el descifrado de cada mensaje. \cite{WikiDoubleRatchet} \cite{DoubleRatchet}
+\item {Triple Diffie-Hellman:} Método para asegurar el intercambio de claves en un canal inseguro. Basado en la dificultad de calcular logaritmos discretos en un cuerpo finito. \cite{WikiDiffieHellman} \cite{X3DH}
 \item {Curve25519:} Curva elíptica utilizada para la generación de pares de claves pública-privada. \cite{WikiCurve25519}
 \item {AES-256:} (Advanced Encryption Standard, Rijndael) Protocolo de cifrado simétrico. \cite{WikiAES}
 \item {HMAC-SHA256:} Método utilizado para verificar la integridad de los datos y autenticar el mensaje. \cite{WikiHMAC}
@@ -36,7 +36,7 @@ Establecer una sesión entre dos clientes significa compartir las claves generad
 
 \subsection {The Onion Router}
 
-The Onion Router, también conocido por sus siglas como TOR, es un proyecto de software libre que ha permitido la creación de una red superpuesta a Internet, en la que el tráfico de paquetes se realiza de forma que imposibilita descubrir la identidad de los pares que participan en la comunicación. \\
+The Onion Router, también conocido por sus siglas como TOR, es un proyecto de software libre que ha permitido la creación de una red superpuesta a Internet, en la que el tráfico de paquetes se realiza de forma que imposibilita descubrir la identidad de los pares que participan en la comunicación. \cite{TorRouter} \\
 
 Esto se consigue haciendo que en cada nodo por el que pasan los paquetes estos se cifren sucesivamente, dando lugar a un cifrado por capas donde la información previa sea inaccesible para un nodo intermedio o para alguna entidad maliciosa actuando de \hyphenquote{spanish}{man in the middle}
 \cite{WikiManInTheMiddle}. \\
@@ -53,7 +53,7 @@ Los ámbitos de uso de TOR van desde la actividad cotidiana hasta su aplicación
 
 \subsubsection {Hidden Services}
 
-Los hidden services son, como su nombre indica, servicios alojados en la red TOR que se comunican con sus usuarios de forma exclusiva por medio de la misma. El dominio para acceder a los hidden services se trata de un hash de 16 caracteres derivado de su clave privada y acabado en ``.onion". \\
+Los hidden services \cite{TorHiddenServices} son, como su nombre indica, servicios alojados en la red TOR que se comunican con sus usuarios de forma exclusiva por medio de la misma. El dominio para acceder a los hidden services se trata de un hash de 16 caracteres derivado de su clave privada y acabado en ``.onion". \\
 
 Los usuarios hacen uso de los \hyphenquote{spanish}{rendezvous points} ó puntos de encuentro (OR que actúan como tales), para conectarse con los hidden services. Es en este punto donde se realiza el intercambio de claves entre usuario y servicio, con el punto de encuentro como intermediario y mediador en la comunicación. \\ 
 
@@ -88,7 +88,7 @@ Una vez que las claves RSA han sido establecidas, este es considerado como un me
 
 \subsubsection {Puntos flacos}
 
-Pese a disponer de un extenso equipo de expertos desarrolladores y criptógrafos, TOR está sujeto a una constante caza de vulnerabilidades y búsqueda de métodos para romper la protección que brinda a los usuarios. \\
+Pese a disponer de un extenso equipo de expertos desarrolladores y criptógrafos \cite{TorBoard01} \cite{TorBoard02} \cite{TorBoard03} \cite{TorBoard04} \cite{TorBoard05}, TOR está sujeto a una constante caza de vulnerabilidades y búsqueda de métodos para romper la protección que brinda a los usuarios. \\
 Los principales interesados en conseguirlo son entidades gubernamentales y servicios de inteligencia de diversos países, que pese a esto, son también usuarios de primera mano de TOR y sus servicios. \\ 
 
 Los principales ataques se basan en la correlación de tiempos de envío y tamaños de paquetes en la red, los cuales mediante una análisis sistemático y controlando un relativamente grande numero de nodos, permitirían destapar la identidad de los usuarios. \\

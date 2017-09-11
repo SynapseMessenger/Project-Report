@@ -4,7 +4,7 @@ Pese a que en los pasados años ha habido una creciente tendencia en la adopció
 
 Esto es debido a que aunque muchos servicios tienen la opción de activar el cifrado punto a punto, impidiendo al servidor intermedio, es decir, al proveedor del servicio (Facebook, Google, etc), interceptar y analizar el contenido, la mayoría de estos no lo tienen como opción activada por defecto. Por lo tanto, el usuario ha de buscar y activar expresamente las funciones relacionadas con aumentar la seguridad, generalmente  denominadas como \hyphenquote{spanish}{conversaciones secretas}, para que estas características se hagan efectivas. \\
 
-A continuación se ha realizado un análisis de las aplicaciones más populares de mensajería y una consideración de sus características de seguridad, así como de la usabilidad o facilidad de acceso de los usuarios a las mismas. Se ha dedicado un apartado individualmente a cada una de las aplicaciones más relevantes, haciendo hincapié en los pros y contras que presentan respecto a sus competidores. \\
+A continuación se ha realizado un análisis de las aplicaciones más populares de mensajería y una consideración de sus características de seguridad, así como de la usabilidad o facilidad de acceso de los usuarios a las mismas. Se ha dedicado un apartado individualmente a cada una de las aplicaciones más relevantes, haciendo hincapié en los pros y contras que presentan respecto a sus competidores. \cite{Ermoshina2016} \cite{Scorecard} \cite{AppComparison01} \cite{AppComparison02}  \cite{AppsWithEncryption} \\ 
 
 \pagebreak
 
@@ -40,7 +40,7 @@ Fue fundada en 2009 por Jan Koum y gracias a la adopción de internet en los dis
 
 En febrero de 2014 Facebook anunció su compra, y finalmente fue adquirida por 21.800 millones de dólares. \\
 
-Gracias a una colaboración con \hyphenquote{spanish}{Open Whispers} \cite{WikiOpenWhisper}, a día de hoy cuenta con la integración del protocolo Signal en todas sus comunicacione: mensajes de texto, voz y videollamadas. Todas sus formas de comunicación vienen cifradas punto a punto por defecto y de forma transparente al usuario. \\
+Gracias a una colaboración con \hyphenquote{spanish}{Open Whispers} \cite{WikiOpenWhisper}, a día de hoy cuenta con la integración del protocolo Signal \cite{WikiSignal} \cite{OWSWhatsApp01} \cite{OWSWhatsApp02} en todas sus comunicaciones: mensajes de texto, voz y videollamadas. Todas sus formas de comunicación vienen cifradas punto a punto por defecto y de forma transparente al usuario. \cite{WhatsAppWhitepaper} \cite{WhatsAppSecurity} \\
 
 A efectos prácticos, WhatsApp protege a sus usuarios de espías intermedios y ni ellos mismos son capaces de leer el contenido de las comunicaciones en sus servidores. \\
 
@@ -48,9 +48,9 @@ Sin embargo, WhatsApp sí que almacena los tiempos de envío de los mensajes, as
 
 Dichos metadatos pueden definirse de forma certera como la información referente a la actividad. Es decir, no se trata del contenido propiamente dicho, si no de la información respecto a la naturaleza del mismo. Por lo tanto, en esta categoría entran aspectos como: información respecto al dispositivo, posición GPS, contactos, horas de conexión, conexiones inalámbricas, duración de las comunicaciones, tamaño de los paquetes enviados, etc. \\
 
-Por otro lado, Facebook fue mencionado en los documentos filtrados por Edward Snowden en 2013 como una de las compañías que cedía el acceso a los datos de sus usuarios a la agencia de seguridad nacional de EE.UU. (NSA). \\
+Por otro lado, Facebook fue mencionado en los documentos filtrados por Edward Snowden en 2013 como una de las compañías que cedía el acceso a los datos de sus usuarios a la agencia de seguridad nacional de EE.UU. (NSA). \cite{NSAGmailFacebook} \\
 
-En conclusión, WhatsApp se presenta como una herramienta de comunicación que cuenta con la tecnología y las herramientas adecuadas pero implementadas de forma que no se cubren completamente los aspectos necesarios para garantizar una privacidad absoluta de sus usuarios, así como la protección de los mismos frente a un escrutinio por parte de un adversario como una entidad gubernamental. \\
+En conclusión, WhatsApp se presenta como una herramienta de comunicación que cuenta con la tecnología y las herramientas adecuadas \cite{OWSWhatsApp03} \cite{WhatsAppEncryptionTheIndependent} pero implementadas de forma que no se cubren completamente los aspectos necesarios para garantizar una privacidad absoluta de sus usuarios \cite{StopWhatsappTelegram}, así como la protección de los mismos frente a un escrutinio por parte de un adversario como una entidad gubernamental. \\
 
 \subsubsection {Facebook Messenger}
 
@@ -60,7 +60,7 @@ Fue lanzada en 2004 bajo el nombre de Facebook Chat, y desde entonces ha sido ad
 
 Como se ha mencionado anteriormente en la tabla comparativa, Facebook Messenger dispone de cifrado punto a punto en forma de chats secretos, que no están habilitados por defecto. En su uso normal, la aplicación solamente cifra el tráfico entre los usuarios y sus servidores. Es decir, la empresa es capaz de leer el contenido de las comunicaciones (tanto texto como contenido multimedia). \\
 
-Facebook Messenger es un claro ejemplo de la adopción de una tecnología que debería ser ubicua en todas las comunicaciones modernas, pero implementada con lo que parece ser una motivación puramente comercial, ya que la enorme mayoría de usuarios no conoce la existencia de esta característica; y de entre los que la conocen, son aún menos los que la utilizan.
+Facebook Messenger es un claro ejemplo de la adopción de una tecnología que debería ser ubicua en todas las comunicaciones modernas, pero implementada con lo que parece ser una motivación puramente comercial, ya que la enorme mayoría de usuarios no conoce la existencia de esta característica; y de entre los que la conocen, son aún menos los que la utilizan. \cite{FacebookEncrypt} \cite{FacebookHowToEncrypt}
 
 \subsubsection {Telegram}
 
@@ -68,17 +68,17 @@ Telegram es una aplicación de mensajería fundada y desarrollada en 2013 por lo
 
 Pavel Durov es un conocido emprendedor y millonario de origen ruso, famoso por ser el fundador de la red social VK. Nikolai, por otra parte, fue CTO de la anterior mencionada red social, y cuenta con una extensa formación académica tanto en matemáticas como en informática; ha obtenido, además, diversas medallas y condecoraciones en olimpiadas y competiciones en ambos campos. \\
 
-El protocolo de Telegram, MTProto, fue desarrollado desde cero por Nikolai, lo cual ha ocasionado diversas dudas respecto a su seguridad y fiabilidad para un uso en producción en la escala de Telegram. \\
+El protocolo de Telegram, MTProto, fue desarrollado desde cero por Nikolai, lo cual ha ocasionado diversas dudas respecto a su seguridad y fiabilidad para un uso en producción en la escala de Telegram. \cite{TelegramCryptoChallenge} \\
 
 Por otro lado, pese a disponer de la opción de chats secretos cifrados punto a punto, estos no se encuentran activados por defecto. En consecuencia, las conversaciones pueden ser leídas y el contenido visualizado en los servidores de la compañía sin ningún impedimento. \\
 
 La función de chat privados hace uso de un cifrado punto a punto donde las claves generadas en el dispositivo son reutilizadas múltiples veces, por lo que se pierde la característica denominada como \hyphenquote{spanish}{forward secrecy}. Si se logra acceder a las claves de cifrado, todos los mensajes serán accesibles para el atacante. Por otro lado, la opción de chats secretos no se encuentra disponible actualmente para las versiones de escritorio de la aplicación. \\
 
-Telegram, pese a ser un legítimo rival para WhatsApp en cuanto a funcionalidad, carece de una base criptográfica sólida.
+Telegram, pese a ser un legítimo rival para WhatsApp en cuanto a funcionalidad, carece de una base criptográfica sólida. \cite{BadTelegram} \cite{StopWhatsappTelegram}
 
 \subsubsection {Signal}
 
-Signal es una aplicación de mensajería de código libre, enfocada en la seguridad y privacidad de sus usuarios. Fue creada en 2014 por Open Whispers Systems (OWS), la misma organización que originó el protocolo del mismo nombre. Fue cofundada por Moxie Marlinspike, coautor de las bases criptográficas del protocolo Signal. Signal es en la actualidad uno de los sistemas de comunicación más seguros. Tiene origen en la fusión de dos proyectos previos, TextSecure y RedPhone, ambas lanzadas por OWS en 2010. Signal destaca en buenas prácticas de seguridad, criptografía y trato de datos de usuarios. \\
+Signal es una aplicación de mensajería de código libre, enfocada en la seguridad y privacidad de sus usuarios. Fue creada en 2014 por Open Whispers Systems (OWS), la misma organización que originó el protocolo del mismo nombre \cite{WikiSignal}. Fue cofundada por Moxie Marlinspike, coautor de las bases criptográficas del protocolo Signal. Signal es en la actualidad uno de los sistemas de comunicación más seguros. Tiene origen en la fusión de dos proyectos previos, TextSecure \cite{7467371} y RedPhone, ambas lanzadas por OWS en 2010. Signal destaca en buenas prácticas de seguridad, criptografía y trato de datos de usuarios. \cite{EuroSP:CCDGS17} \cite{BlogSignal} \cite{GoodSignal01} \cite{GoodSignal02} \\
 
 Todas las comunicaciones están cifradas punto a punto, incluidos los metadatos referentes a las mismas. El almacenamiento de información de usuario se ha reducido al mínimo indispensable para mantener la plataforma, y toda la información restante resulta cifrada de forma que nadie más que los usuarios puede acceder a ella. Las claves de cifrado son generadas en los dispositivos, no compartidas en ninguna otra parte, y las claves utilizadas son únicas en cada mensaje, de forma que la pérdida o filtrado de las mismas no implica el acceso a mensajes previos. Signal implementa, además, formas de comprobar la identidad del usuario con el que nos estamos comunicando, así como métodos para detectar una suplantación de identidad. \\
 
